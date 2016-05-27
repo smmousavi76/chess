@@ -1,0 +1,7 @@
+SFML-2.3.2/
+bin/
+obj/
+*.dll
+*.layout
+*.depend
+~*
