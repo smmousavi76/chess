@@ -32,7 +32,38 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Parser.cpp" />
+		<Unit filename="Parser.hpp" />
+		<Unit filename="bishop.cpp" />
+		<Unit filename="bishop.h" />
+		<Unit filename="board.cpp" />
+		<Unit filename="board.h" />
+		<Unit filename="cell.cpp" />
+		<Unit filename="cell.h" />
+		<Unit filename="client.cpp" />
+		<Unit filename="client.h" />
+		<Unit filename="cpiecce.h" />
+		<Unit filename="data.h" />
+		<Unit filename="event.h" />
+		<Unit filename="king.cpp" />
+		<Unit filename="king.h" />
+		<Unit filename="knight.cpp" />
+		<Unit filename="knight.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="mouseevent.h" />
+		<Unit filename="pawn.cpp" />
+		<Unit filename="pawn.h" />
+		<Unit filename="piecce.cpp" />
+		<Unit filename="piecce.h" />
+		<Unit filename="player.cpp" />
+		<Unit filename="player.h" />
+		<Unit filename="position.h" />
+		<Unit filename="queen.cpp" />
+		<Unit filename="queen.h" />
+		<Unit filename="rook.cpp" />
+		<Unit filename="rook.h" />
+		<Unit filename="update.cpp" />
+		<Unit filename="update.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
