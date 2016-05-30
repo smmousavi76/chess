@@ -2,13 +2,14 @@
 #define PAWN_H_INCLUDED
 #include "Piece.h"
 
-class Pawn:public Piecce
+class Pawn:public Piece
 {
 private:
 
 
 public:
-    Pawn();
+    Pawn(int owner);
+   virtual ~Pawn();
 };
 
 

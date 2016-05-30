@@ -3,7 +3,6 @@
 #include "MouseEvent.h"
 #include "CPiece.h"
 #include "Position.h"
-
 class Piece : public CPiece
 {
 public:
@@ -12,7 +11,7 @@ public:
     Piece(int owner);
     virtual ~Piece();
     virtual bool attack(Piece* defender) = 0;
-    virtual void move(Position) =0;
+    virtual void move(Posiotion) =0;
 };
 
 #endif // PIECE_H_INCLUDED

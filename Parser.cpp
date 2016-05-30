@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-
+/*
 string Parser::removespace(string str)
 {
     string test = "";
@@ -269,3 +269,4 @@ string Parser::write(Graph* graph)
     tmp.back() = '}';
     return tmp;
 }
+*/

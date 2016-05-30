@@ -3,13 +3,13 @@
 #include "Piece.h"
 
 
-class Bishop:public Piecce
+class Bishop:public Piece
 {
 private:
 
 public:
-    Bishop();
-
+    Bishop(int owner);
+    virtual ~Bishop();
 };
 
 #endif

@@ -1,8 +1,7 @@
 #ifndef PARSER_HPP_INCLUDED
 #define PARSER_HPP_INCLUDED
-
+/*
 #include <string>
-#include <QList>
 
 class Graph;
 class Node;
@@ -24,6 +23,6 @@ public:
     static Graph* read(std::string);
 };
 
-#include "Graph.hpp"
+*/
 
 #endif //PARSER_HPP_INCLUDED

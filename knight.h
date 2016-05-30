@@ -2,10 +2,12 @@
 #define KNIGHT_H_INCLUDED
 #include "Piece.h"
 
-class Knight:public Piecce
+class Knight:public Piece
 {
 private:
 
 public:
-    Knight();
+    Knight(int owner);
+    virtual~Knight ();
 };
+#endif

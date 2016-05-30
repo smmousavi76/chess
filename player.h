@@ -15,9 +15,7 @@ class Player
 {
 
 public:
-    int count_piecce;
     int playerId;
-    int score;
     std::vector<Piece*> pieces;
     Player(int id);
     void prepair();

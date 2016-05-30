@@ -3,11 +3,12 @@
 #include "Piece.h"
 
 
-class King:public Piecce
+class King:public Piece
 {
 private:
 
 public:
-    King();
+    King(int owner);
+    virtual ~King();
 };
 #endif

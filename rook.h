@@ -3,12 +3,13 @@
 #include "Position.h"
 #include "Piece.h"
 
- class Rook :public Piecce
+ class Rook :public Piece
  {
  private:
 
  public:
-        Rook();
+        Rook(int owner);
+        virtual ~Rook();
 
  };
  #endif

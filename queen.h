@@ -1,14 +1,16 @@
-#ifndef PIECE_H_INCLUDED
-#define PIECE_H_INCLUDED
+#ifndef QUEEN_H_INCLUDED
+#define QUEEN_H_INCLUDED
 #include "Piece.h"
 #include "Position.h"
-class Queen :public Piecce
+class Queen :public Piece
 {
 private:
 
 
 public:
-    Queen();
-
+    Queen(int owner);
+    virtual ~Queen();
 
 };
+
+#endif
