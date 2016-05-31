@@ -31,25 +31,39 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="SFML-2.3.2/include" />
 		</Compiler>
+		<Linker>
+			<Add library="SFML-2.3.2\lib\libsfml-audio.a" />
+			<Add library="SFML-2.3.2\lib\libsfml-graphics.a" />
+			<Add library="SFML-2.3.2\lib\libsfml-graphics-s.a" />
+			<Add library="SFML-2.3.2\lib\libsfml-network.a" />
+			<Add library="SFML-2.3.2\lib\libsfml-network-s.a" />
+			<Add library="SFML-2.3.2\lib\libsfml-system.a" />
+			<Add library="SFML-2.3.2\lib\libsfml-window.a" />
+			<Add directory="SFML-2.3.2/lib" />
+		</Linker>
 		<Unit filename="Bishop.cpp" />
 		<Unit filename="Board.cpp" />
 		<Unit filename="Board.h" />
-		<Unit filename="CPiecce.h" />
+		<Unit filename="CPiece.h" />
 		<Unit filename="Cell.cpp" />
 		<Unit filename="Cell.h" />
 		<Unit filename="Client.cpp" />
 		<Unit filename="Client.h" />
 		<Unit filename="Data.h" />
 		<Unit filename="Event.h" />
+		<Unit filename="Game.cpp" />
+		<Unit filename="Game.h" />
 		<Unit filename="King.cpp" />
 		<Unit filename="King.h" />
 		<Unit filename="Knight.cpp" />
 		<Unit filename="Knight.h" />
+		<Unit filename="MouseEvent.h" />
 		<Unit filename="Pawn.cpp" />
 		<Unit filename="Pawn.h" />
-		<Unit filename="Piecce.cpp" />
-		<Unit filename="Piecce.h" />
+		<Unit filename="Piece.cpp" />
+		<Unit filename="Piece.h" />
 		<Unit filename="Player.h" />
 		<Unit filename="Position.h" />
 		<Unit filename="Queen.cpp" />
@@ -58,6 +72,9 @@
 		<Unit filename="Rook.h" />
 		<Unit filename="Update.cpp" />
 		<Unit filename="Update.h" />
+		<Unit filename="bishop.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="player.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -28,6 +28,9 @@ public:
     void playerChanger();
     bool finish();
     int remove_piecce();
+    void translate_socket();
+    void send_socket();
+
     };
 
 #endif // UPDATE_H_INCLUDED

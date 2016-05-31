@@ -22,8 +22,6 @@ public:
     void cycle(Data data);
     Event getEvent();
     void close();
-    void translate_socket();
-    void send_socket();
 
 };
 

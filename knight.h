@@ -8,6 +8,6 @@ private:
 
 public:
     Knight(int owner);
-    virtual~Knight ();
+    virtual ~Knight ();
 };
 #endif
