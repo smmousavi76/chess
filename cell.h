@@ -13,7 +13,7 @@ private:
     bool color;
 
 public:
-    Board(bool color,int size);
+    Board(bool c,int size);
     bool GetColor();
 
 
