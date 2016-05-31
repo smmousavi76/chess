@@ -1,4 +1,5 @@
 #include "Pawn.h"
+#include "Position.h"
 Pawn::Pawn(int owner)
 {
  typeId=6;
@@ -15,7 +16,7 @@ Pawn::Pawn(int owner)
         pos.yPos = 8;
     }
 }
-void Pawn::move()
+void Pawn::move(Posiotion pos)
 {
 
 

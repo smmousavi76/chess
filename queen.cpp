@@ -1,4 +1,5 @@
 #include "Queen.h"
+#include "Position.h"
 Queen::Queen(int owner):Piece(int owner)
 {
  typeId = 2;
@@ -18,7 +19,7 @@ Queen::Queen(int owner):Piece(int owner)
     }
 }
 }
-void Queen::move(Posiotion)
+void Queen::move(Posiotion pos)
 {
 
 }

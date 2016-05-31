@@ -38,8 +38,26 @@ else
     counter++;
 }
 }
-void Bishop::move(Posiotion)
+void Bishop::move(Posiotion pos)
 {
+
+ for(int i=Pos.xPos;i=<8;i+=1)
+ {
+      for(int j=Pos.yPos;j==0;j-=1)
+ {
+  PosibleMoves.push_back(pos.Ypos);
+  PosibleMoves.push_back(pos.Xpos);
+ }
+ }
+  for(int i=Pos.yPos;i=<8;i+=1)
+ {
+      for(int j=Pos.xPos;j==0;j-=1)
+ {
+  PosibleMoves.push_back(pos.Ypos);
+  PosibleMoves.push_back(pos.Xpos);
+ }
+ }
+
 
 }
 Bishop::~Bishop()

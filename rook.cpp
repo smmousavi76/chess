@@ -1,5 +1,5 @@
 #include "Rook.h"
-
+#include "Position.h"
 Rook::Rook(int owner) : Piece(owner)
 {
     typeId = 3;
@@ -19,7 +19,7 @@ Rook::Rook(int owner) : Piece(owner)
     }
 }
 
-void Rook::move(Posiotion)
+void Rook::move(Posiotion pos)
 {
 
 }

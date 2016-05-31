@@ -11,7 +11,7 @@ public:
     Piece(int owner);
     virtual ~Piece();
     virtual bool attack(Piece* defender) = 0;
-    virtual void move(Posiotion) =0;
+    virtual void move(Posiotion pos) =0;
 };
 
 #endif // PIECE_H_INCLUDED

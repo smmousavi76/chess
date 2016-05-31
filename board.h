@@ -9,7 +9,7 @@ private:
     void draw(sf::RenderTarget& target, sf::RenderStates states);
 
 public:
-    Board(int Height,int Width);
+    Board(int h,int w);
 
 };
 

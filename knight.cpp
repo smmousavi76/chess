@@ -1,4 +1,5 @@
 #include "Knight.h"
+#include "Position.h"
 Knight::Knight(int owner)
 {
  typeId=5;
@@ -15,7 +16,7 @@ Knight::Knight(int owner)
         pos.yPos = 8;
     }
 }
-void Knight::move()
+void Knight::move(Posiotion Pos)
 {
 
 
