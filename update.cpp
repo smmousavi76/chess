@@ -59,3 +59,25 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
+
+void Update::getEvent(MouseEvent& mouse,Data& data)
+{
+    std::cout <<phase <<"\n";
+    if(phase == -1)
+    {
+        this->prepair();
+        for(int j=0;j<2;j++)
+        {
+            for(int i=0;i<player[j]->pieces.size();i++)
+            {
+
+                data.pieces.push_back(player[j]->pieces[i]);
+
+            }
+
+        }
+
+        phaseChanger();
+        return;
+    }
+}
