@@ -27,9 +27,9 @@ Update::Update()
 
 bool Update::finish()
     {
-        if(player[2]->count_piecce==0||player[1]->count_piecce==0)
-            return 1;
-        else return 0;
+        //if(player[2]->count_piecce==0||player[1]->count_piecce==0)
+       //     return 1;
+       // else return 0;
     }
 
 Update::~Update()

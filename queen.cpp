@@ -18,7 +18,7 @@ Queen::Queen(int owner):Piece( owner)
         pos.yPos = 8;
     }
 }
-}
+
 void Queen::move(Posiotion pos)
 {
 

@@ -6,6 +6,7 @@ Player::Player(int id)
 
 void Player::prepair()
 {
+
     pieces.clear();
     pieces.push_back(new King(playerId));
     pieces.push_back(new Queen(playerId));
@@ -25,3 +26,4 @@ void Player::prepair()
     pieces.push_back(new Bishop(playerId));
     pieces.push_back(new Bishop(playerId));
 }
+

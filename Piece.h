@@ -12,7 +12,7 @@ public:
     MouseEvent mouse;
     Piece(int owner);
     virtual ~Piece();
-    virtual bool attack(Piece* defender) = 0;
+  //  virtual bool attack(Piece* defender) = 0;
     virtual void move(Posiotion pos) =0;
 };
 

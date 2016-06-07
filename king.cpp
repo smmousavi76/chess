@@ -1,5 +1,4 @@
 #include "King.h"
-#include "Position.h"
 King::King(int owner):Piece( owner)
 {
  typeId=1;
