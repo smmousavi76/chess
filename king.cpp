@@ -22,6 +22,7 @@ void King::move(Posiotion pos)
     {
         for(int j=pos.yPos;i=<8;i-=1)
     }
+    pos
 PosibeMoves.push_back(pos.xPos+1);
 PosibeMoves.push_back(pos.xPos-1);
 PosibeMoves.push_back(pos.xPos-2);
