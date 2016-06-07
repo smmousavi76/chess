@@ -1,16 +1,17 @@
 #ifndef BOARD_H_INCLUDED
 #define BOARD_H_INCLUDED
 #include "Cell.h"
-class Board:public sf::Drawble
+#include <SFML/Graphics.hpp>
+
+class Board:public sf::Drawable
 {
 private:
     int Height,Width;
-    Cell **Cell;
+    Cell ***cells;
     void draw(sf::RenderTarget& target, sf::RenderStates states);
 
 public:
     Board(int h,int w);
-
 };
 
 #endif // CLIENT_H_INCLUDED

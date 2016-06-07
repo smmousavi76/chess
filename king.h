@@ -2,7 +2,6 @@
 #define KING_H_INCLUDED
 #include "Piece.h"
 
-
 class King:public Piece
 {
 private:
@@ -10,5 +9,7 @@ private:
 public:
     King(int owner);
     virtual ~King();
+    void move(Posiotion pos);
+    ~King();
 };
 #endif

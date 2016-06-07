@@ -41,3 +41,21 @@ void Update::translatePos(Posiotion& pos)
     pos.xPos /= 100;
     pos.yPos /= 100;
 }
+Piece* Update::whichPiece(Posiotion pos)
+{
+    for (int i=0 ; i<player[playerTurn]->pieces.size() ; i++)
+    {
+        if(pos == player[playerTurn]->pieces[i]->pos)
+        {
+            return player[playerTurn]->pieces[i];
+        }
+    }
+    for (int i=0 ; i<player[(playerTurn+1)%2]->pieces.size() ; i++)
+    {
+        if(pos == player[(playerTurn+1)%2]->pieces[i]->pos)
+        {
+            return player[(playerTurn+1)%2]->pieces[i];
+        }
+    }
+    return nullptr;
+}

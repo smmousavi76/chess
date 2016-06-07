@@ -3,19 +3,21 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-
+//#include "Board.h"
 class Cell:public sf::Drawable, public sf::Transformable
 
 {
 private:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const=0;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+
     sf::RectangleShape rectangle;
     bool color;
 
 public:
-    Board(bool c,int size);
-    bool GetColor();
 
+    Cell(bool c,int size);
+    bool getColor();
 
 
 };

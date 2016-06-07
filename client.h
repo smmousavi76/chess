@@ -2,7 +2,6 @@
 #define CLIENT_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
-//#include <SFML/
 #include "Event.h"
 #include "Data.h"
 

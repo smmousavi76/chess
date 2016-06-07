@@ -9,5 +9,7 @@ private:
 public:
     Knight(int owner);
     virtual ~Knight ();
+    void move(Posiotion pos);
+    ~Knight();
 };
 #endif

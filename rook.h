@@ -10,6 +10,8 @@
  public:
         Rook(int owner);
         virtual ~Rook();
+        void move(Posiotion pos);
+        ~Rook();
 
  };
  #endif

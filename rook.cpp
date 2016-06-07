@@ -7,13 +7,13 @@ Rook::Rook(int owner) : Piece(owner)
 
     if(owner == 0)//white
     {
-        Black_White=0;
+       // Black_White=0;
         pos.xPos = 5;
         pos.yPos = 8;
     }
     else if(owner == 1)//black
     {
-        Black_White=1;
+       // Black_White=1;
         pos.xPos = 5;
         pos.yPos = 1;
     }

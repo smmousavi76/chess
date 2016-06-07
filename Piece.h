@@ -3,6 +3,8 @@
 #include "MouseEvent.h"
 #include "CPiece.h"
 #include "Position.h"
+#include "Piece.h"
+
 class Piece : public CPiece
 {
 public:

@@ -15,7 +15,7 @@
     {
         return color;
     }
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+     void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         states.transform *=getTransform();
         target.draw(rectangle, states);
