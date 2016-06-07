@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "MouseEvent.h"
 #include "Data.h"
-
+#include <iostream>
 class Update
 {
 private:
