@@ -12,7 +12,6 @@ public:
     Bishop(int owner);
     virtual ~Bishop();
     void move(Posiotion pos);
-    ~Bishop();
 };
 
 #endif

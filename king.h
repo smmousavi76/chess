@@ -10,6 +10,5 @@ public:
     King(int owner);
     virtual ~King();
     void move(Posiotion pos);
-    ~King();
 };
 #endif

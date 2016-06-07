@@ -11,7 +11,6 @@ public:
     Pawn(int owner);
    virtual ~Pawn();
 void move(Posiotion pos);
-~Pawn();
 };
 
 

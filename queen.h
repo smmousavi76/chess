@@ -11,7 +11,6 @@ public:
     Queen(int owner);
     virtual ~Queen();
     void move(Posiotion pos);
-    ~Queen();
 
 };
 
