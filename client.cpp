@@ -1,10 +1,10 @@
 #include "Client.h"
 #include <iostream>
-
+#include "Board.h"
 Client::Client()
 {
     setting.antialiasingLevel = 4;
-    window = new sf::RenderWindow(sf::VideoMode(700,900), "Chess " , sf::Style::Close, setting);
+    window = new sf::RenderWindow(sf::VideoMode(800,800), "Chess " , sf::Style::Close, setting);
     window->setFramerateLimit(30);
 
 }
@@ -65,5 +65,14 @@ void Client::loadTexture()
 
 void Client::makeBoard()
 {
+    Board* board = new Board(8,8);
+    sf::RectangleShape r(sf::Vector2f(100,100));
+    r.setFillColor(sf::Color::White);
+       while(1)
+       {
+        window->draw(*board);
+        window->display();
+       }
+
 
 }

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Event.h"
 #include "Data.h"
+#include <SFML/Network.hpp>
 
 class Client
 {

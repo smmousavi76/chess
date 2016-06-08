@@ -8,10 +8,12 @@ class Board:public sf::Drawable
 private:
     int Height,Width;
     Cell ***cells;
-    void draw(sf::RenderTarget& target, sf::RenderStates states);
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
     Board(int h,int w);
+    ~Board();
+
 };
 
 #endif // CLIENT_H_INCLUDED

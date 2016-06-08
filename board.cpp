@@ -14,7 +14,7 @@
             }
     }
 
-     void Board::draw(sf::RenderTarget& target, sf::RenderStates states)
+     void Board::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         for(int h=0;h<Height;h++)
             for(int w=0;w<Width;w++)
@@ -22,3 +22,8 @@
                 target.draw(*cells[h][w]);
             }
     }
+    Board::~Board()
+    {
+
+    }
+
