@@ -9,7 +9,7 @@ class Bishop:public Piece
 {
 
 public:
-    Bishop(int owner);
+    Bishop(int owner,int count);
     virtual ~Bishop();
     void move(Posiotion pos);
 };

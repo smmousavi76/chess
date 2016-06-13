@@ -8,7 +8,7 @@
  private:
 
  public:
-        Rook(int owner);
+        Rook(int owner,int count);
         virtual ~Rook();
         void move(Posiotion pos);
 

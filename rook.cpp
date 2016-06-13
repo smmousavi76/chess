@@ -1,21 +1,27 @@
 #include "Rook.h"
 #include "Position.h"
-Rook::Rook(int owner) : Piece(owner)
+Rook::Rook(int owner,int count) : Piece(owner)
 {
     typeId = 3;
 
 
     if(owner == 0)//white
     {
-       // Black_White=0;
-        pos.xPos = 5;
-        pos.yPos = 8;
+    if(count==1)
+        pos.xPos=1;
+    else{
+        pos.xPos=8;
+    }
+        pos.xPos = 1;
     }
     else if(owner == 1)//black
     {
-       // Black_White=1;
-        pos.xPos = 5;
-        pos.yPos = 1;
+      if(count==1)
+        pos.xPos=1;
+    else{
+        pos.xPos=8;
+    }
+            pos.xPos = 8;
     }
 }
 

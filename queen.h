@@ -8,7 +8,7 @@ private:
 
 
 public:
-    Queen(int owner);
+    Queen(int owner,int count);
     virtual ~Queen();
     void move(Posiotion pos);
 

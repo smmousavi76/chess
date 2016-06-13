@@ -1,19 +1,17 @@
 #include "Pawn.h"
 #include "Position.h"
-Pawn::Pawn(int owner):Piece(owner)
+Pawn::Pawn(int owner,int count):Piece(owner)
 {
  typeId=6;
    if(owner == 0)//white
     {
-       // Black_White=0;
-        pos.xPos = 1;
-        pos.yPos = 4;
+        pos.xPos = count;
+        pos.yPos = 2;
     }
     else if(owner == 1)//black
     {
-       // Black_White=1;
-        pos.xPos =1;
-        pos.yPos = 8;
+        pos.xPos =count;
+        pos.yPos = 7;
     }
 }
 void Pawn::move(Posiotion pos)

@@ -17,15 +17,25 @@ Client::~Client()
 void Client::start()
 {
   makeBoard();
-    loadTexture();
+  loadTexture();
 }
 
 void Client::cycle(Data data)
 {
     window->clear();
+    for(int i=0;i<data.pieces.size();i++)
+    {
+        sf::Sprite sprite;
+        sprite.setTexture(pieceTexture[data.pieces[i]->typeId]);
+        sprite.setOrigin(sprite.getGlobalBounds().width/2,sprite.getGlobalBounds().height/2);
+        sprite.setPosition(data.pieces[i]->pos.xPos*100+50, data.pieces[i]->pos.yPos*100+50);
+        if(data.pieces[i]->owner)
+            sprite.setRotation(180);
+        else
+            sprite.setRotation(0);
+            window->draw(sprite);
+    }
 
-
-        //window->draw(sprite);
 
 
     window->display();
@@ -60,6 +70,31 @@ void Client::close()
 
 void Client::loadTexture()
 {
+    pieceTexture.clear();
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Bishop.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Knight.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/King.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Queen.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Rook.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Pawn.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Bishop2.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Knight2.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/King2.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Queen2.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Rook2.png");
+    pieceTexture.push_back(sf::Texture());
+    pieceTexture.back().loadFromFile("Pics/Pawn2.png");
 
 }
 

@@ -7,7 +7,7 @@ class Knight:public Piece
 private:
 
 public:
-    Knight(int owner);
+    Knight(int owner,int count);
     virtual ~Knight ();
     void move(Posiotion pos);
 };

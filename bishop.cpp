@@ -1,42 +1,28 @@
 #include "Bishop.h"
 
-Bishop::Bishop(int owner):Piece( owner)
+Bishop::Bishop(int owner,int count):Piece( owner)
 {
  typeId = 4;
- int counter=0;
 
-    if(owner == 0)//white
-    {
-       // Black_White=0;
-if(counter==0)
-    {
-    pos.xPos = 1;
-    pos.yPos = 1;
-}
-else
+
+if(owner == 0)//white
 {
- pos.xPos=8;
- pos.yPos=1;
+pos.xPos=1;
+    if(count==1)
+        pos.yPos=3;
+    else{
+        pos.yPos=6;
+    }
 }
+if(owner==1)
+{
+     if(count==1)
+        pos.yPos=3;
+    else{
+        pos.yPos=6;
     }
-
-
-
-    else if(owner == 1)//black
-    {
-        //Black_White=1;
-        if(counter==0)
-        {
-        pos.xPos = 1;
-        pos.yPos = 8;
-        }
-        else
-        {
-            pos.xPos=8;
-            pos.yPos=8;
-        }
-    }
-    counter++;
+    pos.xPos=8;
+}
 }
 
 void Bishop::move(Posiotion Pos)

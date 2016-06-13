@@ -8,7 +8,7 @@ private:
 
 
 public:
-    Pawn(int owner);
+    Pawn(int owner,int count);
    virtual ~Pawn();
 void move(Posiotion pos);
 };

@@ -4,6 +4,7 @@ King::King(int owner):Piece( owner)
  typeId=1;
   if(owner == 0)//white
     {
+
         //Black_White=0;
         pos.xPos = 5;
         pos.yPos = 1;
