@@ -20,6 +20,30 @@ void King::move(Posiotion pos)
 {
    int First_x=pos.xPos;
    int First_x=pos.xPos;
+    Posiotion a;
+    a.xPos=pos.xPos;
+    a.yPos=pos.yPos+1;
+    PossibleMoves.push_back(a);
+    a.yPos=pos.yPos+1;
+    PossibleMoves.push_back(a);
+    a.xPos=pos.xPos+1;
+    a.yPos=pos.yPos;
+    PossibleMoves.push_back(a);
+    a.xPos=pos.xPos-1;
+    a.yPos=pos.yPos;
+    PossibleMoves.push_back(a);
+    a.xPos=pos.xPos+1;
+    a.yPos=pos.yPos+1;
+    PossibleMoves.push_back(a);
+    a.xPos=pos.xPos-1;
+    a.yPos=pos.yPos+1;
+    PossibleMoves.push_back(a);
+    a.xPos=pos.xPos+1;
+    a.yPos=pos.yPos-1;
+    PossibleMoves.push_back(a);
+    a.xPos=pos.xPos-1;
+    a.yPos=pos.yPos-1;
+    PossibleMoves.push_back(a);
 
 }
 King::~King()
