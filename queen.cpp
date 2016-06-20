@@ -21,7 +21,8 @@ Queen::Queen(int owner):Piece( owner)
 
 void Queen::move(Posiotion pos)
 {
-
+    int First_x=pos.xPos;
+    int First_y=pos.yPos;
 }
 
 Queen::~Queen()

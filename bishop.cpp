@@ -27,26 +27,55 @@ if(owner==1)
 
 void Bishop::move(Posiotion Pos)
 {
-/*
- for(int i=Pos.xPos;i=<8;i+=1)
- {
-      for(int j=Pos.yPos;j==0;j-=1)
- {
-  PossibleMoves.push_back(Pos.yPos);
-  PossibleMoves.push_back(Pos.xPos);
- }
- }
-for(int i=Pos.yPos;i=<8;i+=1)
- {
-      for(int j=Pos.xPos;j==0;j-=1)
- {
-  PossibleMoves.push_back(Pos.yPos);
-  PossibleMoves.push_back(Pos.xPos);
- }
+    int First_x=pos.xPos;
+    int First_y=pos.yPos;
+    for(int i=pos.xPos;i=<8;i++)
+    {
+        for(int j=pos.yPos;j=<8;j++)
+        {
 
- }
-*/
 
+            Posiotion a;
+            a.xPos=i;
+            a.yPos=j;
+            PossibleMoves.push_back(a);
+    }
+    }
+    pos.xPos=First_x;
+    pos.yPos=First_y;
+    for(int i=pos.xPos;i>0;i++)
+    {
+        for(int j=pos.yPos;j>=8;j++)
+        {
+            Posiotion b;
+            b.xPos=i;
+            b.yPos=j;
+            PossibleMoves.push_back(b);
+
+        }
+    }
+    for(int i=pos.xPos;i>0;i--)
+    {
+        for(int j=pos.yPos;j>0;j--)
+        {
+            Posiotion c;
+            c.xPos=i;
+            c.yPos=j;
+            PossibleMoves.push_back(c);
+        }
+    }
+    pos.xPos=First_x;
+    pos.yPos=First_y;
+    for(int i=pos.xPos;i=<8;i++)
+    {
+        for(int j=pos.yPos;j>0;j--)
+        {
+            Posiotion d;
+            d.xPos=i;
+            d.yPos=j;
+            PossibleMoves.push_back(d);
+        }
+    }
 }
 Bishop::~Bishop()
 {

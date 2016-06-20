@@ -18,24 +18,8 @@ King::King(int owner):Piece( owner)
 }
 void King::move(Posiotion pos)
 {
-    /*
-    for(int i=pos.xPos;i=<8;i+=1)
-    {
-        for(int j=pos.yPos;i=<8;i-=1)
-    }
-
-PossibleMovesibeMoves.push_back(pos.xPos+1);
-PossibleMovesibeMoves.push_back(pos.xPos-1);
-PossibleMovesibeMoves.push_back(pos.xPos-2);
-PossibleMovessibeMoves.push_back(pos.xPos+2);
-PossibleMovesibeMoves.push_back(pos.yPos+1);
-PossibleMovesibeMoves.push_back(pos.yPos-1);
-PossibleMovesibeMoves.push_back(pos.yPos-2);
-PossibleMovessibeMoves.push_back(pos.yPos+2);
-*/
-
-
-
+   int First_x=pos.xPos;
+   int First_x=pos.xPos;
 
 }
 King::~King()

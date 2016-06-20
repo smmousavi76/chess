@@ -26,6 +26,8 @@ Knight::Knight(int owner,int count):Piece(owner)
 }
 void Knight::move(Posiotion Pos)
 {
+    int First_x=pos.xPos;
+    int First_y=pos.yPos;
 
 
 }

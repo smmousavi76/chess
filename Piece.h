@@ -8,6 +8,7 @@
 class Piece : public CPiece
 {
 public:
+    bool start();
     bool White_Black;
     MouseEvent mouse;
     Piece(int owner);
