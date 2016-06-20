@@ -19,7 +19,7 @@ King::King(int owner):Piece( owner)
 void King::move(Posiotion pos)
 {
    int First_x=pos.xPos;
-   int First_x=pos.xPos;
+   int First_y=pos.yPos;
     Posiotion a;
     a.xPos=pos.xPos;
     a.yPos=pos.yPos+1;

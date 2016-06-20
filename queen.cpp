@@ -23,7 +23,7 @@ void Queen::move(Posiotion pos)
 {
    int First_x=pos.xPos;
     int First_y=pos.yPos;
- for(int i=pos.yPos;i=<8;i++)
+ for(int i=pos.yPos;i<=8;i++)
  {
 
      Posiotion a;
@@ -36,12 +36,12 @@ void Queen::move(Posiotion pos)
  {
      Posiotion b;
      b.xPos=First_x;
-     PossibleMoves.push_back(a);
+     PossibleMoves.push_back(b);
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
 
- for(int i=pos.xPos;i=<8;i++)
+ for(int i=pos.xPos;i<=8;i++)
  {
      Posiotion c;
      c.yPos=First_y;
@@ -55,9 +55,9 @@ void Queen::move(Posiotion pos)
      d.yPos=First_y;
      PossibleMoves.push_back(d);
  }
- for(int i=pos.xPos;i=<8;i++)
+ for(int i=pos.xPos;i<=8;i++)
     {
-        for(int j=pos.yPos;j=<8;j++)
+        for(int j=pos.yPos;j<=8;j++)
         {
 
 
@@ -92,7 +92,7 @@ void Queen::move(Posiotion pos)
     }
     pos.xPos=First_x;
     pos.yPos=First_y;
-    for(int i=pos.xPos;i=<8;i++)
+    for(int i=pos.xPos;i<=8;i++)
     {
         for(int j=pos.yPos;j>0;j--)
         {

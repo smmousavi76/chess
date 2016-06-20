@@ -29,7 +29,7 @@ void Rook::move(Posiotion pos)
 {
     int First_x=pos.xPos;
     int First_y=pos.yPos;
- for(int i=pos.yPos;i=<8;i++)
+ for(int i=pos.yPos;i<=8;i++)
  {
 
      Posiotion a;
@@ -42,12 +42,12 @@ void Rook::move(Posiotion pos)
  {
      Posiotion b;
      b.xPos=First_x;
-     PossibleMoves.push_back(a);
+     PossibleMoves.push_back(b);
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
 
- for(int i=pos.xPos;i=<8;i++)
+ for(int i=pos.xPos;i<=8;i++)
  {
      Posiotion c;
      c.yPos=First_y;

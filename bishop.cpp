@@ -29,9 +29,9 @@ void Bishop::move(Posiotion Pos)
 {
     int First_x=pos.xPos;
     int First_y=pos.yPos;
-    for(int i=pos.xPos;i=<8;i++)
+    for(int i=pos.xPos;i<=8;i++)
     {
-        for(int j=pos.yPos;j=<8;j++)
+        for(int j=pos.yPos;j<=8;j++)
         {
 
 
@@ -66,7 +66,7 @@ void Bishop::move(Posiotion Pos)
     }
     pos.xPos=First_x;
     pos.yPos=First_y;
-    for(int i=pos.xPos;i=<8;i++)
+    for(int i=pos.xPos;i<=8;i++)
     {
         for(int j=pos.yPos;j>0;j--)
         {
