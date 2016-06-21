@@ -75,9 +75,9 @@ void Client::loadTexture()
     pieceTexture.clear();
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Bishop.png");
+        std::cout <<".";
 
-
-        pieceTexture.push_back(sf::Texture());
+    pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Knight.png");
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/King.png");
@@ -100,7 +100,6 @@ void Client::loadTexture()
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Pawn2.png");
 
-    std::cout <<".";
 }
 
 void Client::makeBoard()

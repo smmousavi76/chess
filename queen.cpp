@@ -8,14 +8,14 @@ Queen::Queen(int owner):Piece( owner)
     if(owner == 0)//white
     {
        // Black_White=0;
-        pos.xPos = 1;
-        pos.yPos = 4;
+        pos.xPos = 4;
+        pos.yPos = 0;
     }
     else if(owner == 1)//black
     {
       //  Black_White=1;
-        pos.xPos =1;
-        pos.yPos = 8;
+        pos.xPos =4;
+        pos.yPos = 7;
     }
 }
 

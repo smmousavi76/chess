@@ -6,13 +6,13 @@ King::King(int owner):Piece( owner)
     {
 
         //Black_White=0;
-        pos.xPos = 5;
+        pos.xPos = 3;
         pos.yPos = 0;
     }
     else if(owner == 1)//black
     {
         //Black_White=1;
-        pos.xPos =5;
+        pos.xPos =3;
         pos.yPos = 7;
     }
 }
