@@ -9,18 +9,12 @@ if(owner == 0)//white
 {
 pos.yPos=0;
     if(count==1)
-<<<<<<< Updated upstream
+
         pos.xPos=2;
     else{
         pos.xPos=5;
-=======
-        pos.yPos=2;
-    else{
-        pos.yPos=5;
->>>>>>> Stashed changes
-    }
 }
-
+}
 if(owner==1)
 {
      if(count==1)
