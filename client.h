@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Event.h"
 #include "Data.h"
+#include "Board.h"
 #include <SFML/Network.hpp>
 
 class Client
@@ -13,6 +14,7 @@ class Client
     sf::Event event;
     std::vector<sf::RectangleShape> boardLines;
     std::vector<sf::Texture> pieceTexture;
+    Board* board;
     void makeBoard();
     void loadTexture();
 public:

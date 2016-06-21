@@ -5,23 +5,22 @@ Knight::Knight(int owner,int count):Piece(owner)
  typeId=5;
    if(owner == 0)//white
     {
+        pos.yPos=0;
         if(count==1)
-        pos.xPos = 2;
-        else{
-        pos.xPos=1;
-
+        pos.xPos = 1;
+        if(count==2){
+        pos.xPos=6;
         }
-        pos.yPos = 1;
     }
     else if(owner == 1)//black
     {
        if(count==1)
-        pos.xPos = 2;
-        else{
-        pos.xPos=8;
+        pos.xPos = 1;
+        if(count==2){
+        pos.xPos=6;
 
         }
-        pos.yPos = 1;
+        pos.yPos = 7;
     }
 }
 void Knight::move(Posiotion Pos)

@@ -5,13 +5,16 @@ Pawn::Pawn(int owner,int count):Piece(owner)
  typeId=6;
    if(owner == 0)//white
     {
-        pos.xPos = count;
-        pos.yPos = 2;
+          pos.yPos=1;
+          pos.xPos =count;
+
+
+        pos.yPos = 1;
     }
     else if(owner == 1)//black
     {
         pos.xPos =count;
-        pos.yPos = 7;
+        pos.yPos = 6;
     }
 }
 void Pawn::move(Posiotion pos)

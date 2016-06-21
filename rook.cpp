@@ -4,24 +4,24 @@ Rook::Rook(int owner,int count) : Piece(owner)
 {
     typeId = 3;
 
-
     if(owner == 0)//white
     {
+        pos.yPos=0;
     if(count==1)
-        pos.xPos=1;
-    else{
-        pos.xPos=8;
+        pos.xPos=0;
+    if(count==2){
+        pos.xPos=7;
     }
-        pos.xPos = 1;
     }
     else if(owner == 1)//black
     {
+        pos.yPos=7;
+
       if(count==1)
-        pos.xPos=1;
-    else{
-        pos.xPos=8;
+        pos.xPos=0;
+    if(count==2){
+        pos.xPos=7;
     }
-            pos.xPos = 8;
     }
 }
 

@@ -7,13 +7,13 @@ King::King(int owner):Piece( owner)
 
         //Black_White=0;
         pos.xPos = 5;
-        pos.yPos = 1;
+        pos.yPos = 0;
     }
     else if(owner == 1)//black
     {
         //Black_White=1;
         pos.xPos =5;
-        pos.yPos = 8;
+        pos.yPos = 7;
     }
 }
 void King::move(Posiotion pos)

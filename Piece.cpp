@@ -1,7 +1,7 @@
 #include "Piece.h"
 Piece::Piece(int owner)
 {
-    this->owner = owner;
+this->owner = owner;
 
 }
 bool Piece::start()

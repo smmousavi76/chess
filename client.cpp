@@ -1,10 +1,10 @@
 #include "Client.h"
 #include <iostream>
-#include "Board.h"
+
 Client::Client()
 {
     setting.antialiasingLevel = 4;
-    window = new sf::RenderWindow(sf::VideoMode(800,800), "Chess " , sf::Style::Close, setting);
+    window = new sf::RenderWindow(sf::VideoMode(800,800), "Chess " , sf::Style::Default, setting);
     window->setFramerateLimit(30);
 
 }
@@ -23,6 +23,8 @@ void Client::start()
 void Client::cycle(Data data)
 {
     window->clear();
+    window->draw(*board);
+    std::cout <<data.pieces.size() <<"\n";
     for(int i=0;i<data.pieces.size();i++)
     {
         sf::Sprite sprite;
@@ -73,7 +75,9 @@ void Client::loadTexture()
     pieceTexture.clear();
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Bishop.png");
-    pieceTexture.push_back(sf::Texture());
+
+
+        pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Knight.png");
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/King.png");
@@ -96,18 +100,12 @@ void Client::loadTexture()
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Pawn2.png");
 
+    std::cout <<".";
 }
 
 void Client::makeBoard()
 {
-    Board* board = new Board(8,8);
+    board = new Board(8,8);
     sf::RectangleShape r(sf::Vector2f(100,100));
     r.setFillColor(sf::Color::White);
-       while(1)
-       {
-        window->draw(*board);
-        window->display();
-       }
-
-
 }
