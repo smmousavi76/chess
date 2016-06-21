@@ -32,7 +32,8 @@ void Client::cycle(Data data)
         sprite.setOrigin(sprite.getGlobalBounds().width/2,sprite.getGlobalBounds().height/2);
         sprite.setPosition(data.pieces[i]->pos.xPos*100+50, data.pieces[i]->pos.yPos*100+50);
         if(data.pieces[i]->owner)
-            sprite.setRotation(180);
+            ;
+           // sprite.setRotation(180);
         else
             sprite.setRotation(0);
             window->draw(sprite);
@@ -74,19 +75,17 @@ void Client::loadTexture()
 {
     pieceTexture.clear();
     pieceTexture.push_back(sf::Texture());
-    pieceTexture.back().loadFromFile("Pics/Bishop.png");
-        std::cout <<".";
-
+    pieceTexture.back().loadFromFile("Pics/Bishop.png");//type id =0
     pieceTexture.push_back(sf::Texture());
-    pieceTexture.back().loadFromFile("Pics/Knight.png");
+    pieceTexture.back().loadFromFile("Pics/Knight.png");//1
     pieceTexture.push_back(sf::Texture());
-    pieceTexture.back().loadFromFile("Pics/King.png");
+    pieceTexture.back().loadFromFile("Pics/King.png");//2
     pieceTexture.push_back(sf::Texture());
-    pieceTexture.back().loadFromFile("Pics/Queen.png");
+    pieceTexture.back().loadFromFile("Pics/Queen.png");//3
     pieceTexture.push_back(sf::Texture());
-    pieceTexture.back().loadFromFile("Pics/Rook.png");
+    pieceTexture.back().loadFromFile("Pics/Rook.png");//4
     pieceTexture.push_back(sf::Texture());
-    pieceTexture.back().loadFromFile("Pics/Pawn.png");
+    pieceTexture.back().loadFromFile("Pics/Pawn.png");//5
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Bishop2.png");
     pieceTexture.push_back(sf::Texture());

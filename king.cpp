@@ -1,20 +1,25 @@
 #include "King.h"
+#include <iostream>
 King::King(int owner):Piece( owner)
 {
- typeId=1;
   if(owner == 0)//white
     {
+     typeId=2;
 
         //Black_White=0;
         pos.xPos = 3;
         pos.yPos = 0;
     }
-    else if(owner == 1)//black
+     if(owner == 1)//black
     {
+        std::cout<<"hhhhhh";
+        typeId=8;
         //Black_White=1;
         pos.xPos =3;
         pos.yPos = 7;
+
     }
+
 }
 void King::move(Posiotion pos)
 {
@@ -50,3 +55,4 @@ King::~King()
 {
 
 }
+

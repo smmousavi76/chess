@@ -2,9 +2,10 @@
 #include "Position.h"
 Knight::Knight(int owner,int count):Piece(owner)
 {
- typeId=5;
    if(owner == 0)//white
     {
+         typeId=1;
+
         pos.yPos=0;
         if(count==1)
         pos.xPos = 1;
@@ -14,6 +15,8 @@ Knight::Knight(int owner,int count):Piece(owner)
     }
     else if(owner == 1)//black
     {
+        typeId=7;
+
        if(count==1)
         pos.xPos = 1;
         if(count==2){

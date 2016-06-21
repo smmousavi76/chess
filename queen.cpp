@@ -1,18 +1,22 @@
 #include "Queen.h"
 #include "Position.h"
+#include <iostream>
 Queen::Queen(int owner):Piece( owner)
 {
- typeId = 2;
 
 
     if(owner == 0)//white
     {
+         typeId = 3;
+
        // Black_White=0;
         pos.xPos = 4;
         pos.yPos = 0;
     }
     else if(owner == 1)//black
     {
+        typeId=9;
+    std::cout<<"salam";
       //  Black_White=1;
         pos.xPos =4;
         pos.yPos = 7;

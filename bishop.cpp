@@ -2,11 +2,12 @@
 
 Bishop::Bishop(int owner,int count):Piece( owner)
 {
- typeId = 4;
 
 
 if(owner == 0)//white
 {
+     typeId = 0;
+
 pos.yPos=0;
     if(count==1)
 
@@ -17,6 +18,7 @@ pos.yPos=0;
 }
 if(owner==1)
 {
+    typeId=6;
      if(count==1)
         pos.xPos=2;
     else{

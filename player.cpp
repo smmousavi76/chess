@@ -9,7 +9,6 @@ void Player::prepair()
 
     pieces.clear();
     pieces.push_back(new King(playerId));
-
     pieces.push_back(new Queen(playerId));
     pieces.push_back(new Pawn(playerId,0));//1
     pieces.push_back(new Pawn(playerId,1));//2

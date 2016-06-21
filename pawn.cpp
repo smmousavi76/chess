@@ -2,9 +2,10 @@
 #include "Position.h"
 Pawn::Pawn(int owner,int count):Piece(owner)
 {
- typeId=6;
    if(owner == 0)//white
     {
+         typeId=5;
+
           pos.yPos=1;
           pos.xPos =count;
 
@@ -13,6 +14,7 @@ Pawn::Pawn(int owner,int count):Piece(owner)
     }
     else if(owner == 1)//black
     {
+        typeId=11;
         pos.xPos =count;
         pos.yPos = 6;
     }
