@@ -7,21 +7,21 @@ Bishop::Bishop(int owner,int count):Piece( owner)
 
 if(owner == 0)//white
 {
-pos.xPos=1;
+pos.yPos=0;
     if(count==1)
-        pos.yPos=3;
+        pos.xPos=2;
     else{
-        pos.yPos=6;
+        pos.xPos=5;
     }
 }
 if(owner==1)
 {
      if(count==1)
-        pos.yPos=3;
+        pos.xPos=2;
     else{
-        pos.yPos=6;
+        pos.xPos=5;
     }
-    pos.xPos=8;
+    pos.yPos=7;
 }
 }
 
