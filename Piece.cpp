@@ -13,3 +13,7 @@ Piece::~Piece()
 {
 
 }
+void Piece::move(Posiotion  pos)
+{
+    this->pos=pos;
+}

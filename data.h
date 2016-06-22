@@ -6,7 +6,7 @@
 struct Data
 {
     std::vector<CPiece*> pieces;
-    //std::vector<Posiotion> possibleMoves;
+    std::vector<Posiotion> possibleMoves;
 
 };
 

@@ -26,7 +26,7 @@ Rook::Rook(int owner,int count) : Piece(owner)
     }
 }
 
-void Rook::move(Posiotion pos)
+std::vector <Posiotion> Rook::PossibleMove()
 {
     int First_x=pos.xPos;
     int First_y=pos.yPos;
@@ -35,7 +35,7 @@ void Rook::move(Posiotion pos)
 
      Posiotion a;
      a.xPos=First_x;
-     PossibleMoves.push_back(a);
+     possibleMoves.push_back(a);
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
@@ -43,7 +43,9 @@ void Rook::move(Posiotion pos)
  {
      Posiotion b;
      b.xPos=First_x;
-     PossibleMoves.push_back(b);
+    possibleMoves.push_back(b);
+
+
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
@@ -52,7 +54,9 @@ void Rook::move(Posiotion pos)
  {
      Posiotion c;
      c.yPos=First_y;
-     PossibleMoves.push_back(c);
+    possibleMoves.push_back(c);
+
+
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
@@ -60,8 +64,10 @@ void Rook::move(Posiotion pos)
  {
      Posiotion d;
      d.yPos=First_y;
-     PossibleMoves.push_back(d);
+    possibleMoves.push_back(d);
+
  }
+ return possibleMoves;
 }
 Rook::~Rook()
 {

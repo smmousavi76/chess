@@ -7,8 +7,11 @@ class King:public Piece
 private:
 
 public:
+    std::vector<Posiotion> possibleMoves;
+
     King(int owner);
     virtual ~King() ;
-    void move(Posiotion pos) ;
+    std::vector <Posiotion> PossibleMove();
+
 };
 #endif

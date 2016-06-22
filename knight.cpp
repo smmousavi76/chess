@@ -26,12 +26,14 @@ Knight::Knight(int owner,int count):Piece(owner)
         pos.yPos = 7;
     }
 }
-void Knight::move(Posiotion Pos)
+std::vector <Posiotion> Knight::PossibleMove()
 {
     int First_x=pos.xPos;
     int First_y=pos.yPos;
-
-
+    Posiotion a;
+    a.xPos=pos.xPos;
+    a.yPos=pos.yPos;
+possibleMoves.push_back(a);
 }
 Knight::~Knight()
 {

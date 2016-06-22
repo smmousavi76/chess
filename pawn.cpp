@@ -19,7 +19,7 @@ Pawn::Pawn(int owner,int count):Piece(owner)
         pos.yPos = 6;
     }
 }
-void Pawn::move(Posiotion pos)
+std::vector <Posiotion> Pawn::PossibleMove()
 {
     int First_x=pos.xPos;
     int First_y=pos.yPos;
@@ -30,7 +30,7 @@ void Pawn::move(Posiotion pos)
          Posiotion a;
          a.xPos=i;
          a.yPos=First_y;
-         PossibleMoves.push_back(a);
+         possibleMoves.push_back(a);
             ///no possible move for attack
      }
 
@@ -43,10 +43,11 @@ void Pawn::move(Posiotion pos)
          Posiotion a;
          a.xPos=First_x;
          a.yPos=pos.yPos;
-         PossibleMoves.push_back(a);
+         possibleMoves.push_back(a);
      }
 
  }
+ return possibleMoves;
 
 }
 Pawn::~Pawn()

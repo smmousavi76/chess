@@ -8,9 +8,11 @@ private:
 
 
 public:
+    std::vector<Posiotion> possibleMoves;
+    std::vector <Posiotion> PossibleMove();
+
     Queen(int owner);
     virtual ~Queen();
-    void move(Posiotion pos);
 
 };
 

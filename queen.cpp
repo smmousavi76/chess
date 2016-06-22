@@ -23,7 +23,7 @@ Queen::Queen(int owner):Piece( owner)
     }
 }
 
-void Queen::move(Posiotion pos)
+std::vector <Posiotion> Queen:: PossibleMove()
 {
    int First_x=pos.xPos;
     int First_y=pos.yPos;
@@ -32,7 +32,7 @@ void Queen::move(Posiotion pos)
 
      Posiotion a;
      a.xPos=First_x;
-     PossibleMoves.push_back(a);
+         possibleMoves.push_back(a);
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
@@ -40,7 +40,7 @@ void Queen::move(Posiotion pos)
  {
      Posiotion b;
      b.xPos=First_x;
-     PossibleMoves.push_back(b);
+         possibleMoves.push_back(b);
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
@@ -49,7 +49,8 @@ void Queen::move(Posiotion pos)
  {
      Posiotion c;
      c.yPos=First_y;
-     PossibleMoves.push_back(c);
+    possibleMoves.push_back(c);
+
  }
     pos.xPos=First_x;
     pos.yPos=First_y;
@@ -57,7 +58,7 @@ void Queen::move(Posiotion pos)
  {
      Posiotion d;
      d.yPos=First_y;
-     PossibleMoves.push_back(d);
+         possibleMoves.push_back(d);
  }
  for(int i=pos.xPos;i<=8;i++)
     {
@@ -68,7 +69,8 @@ void Queen::move(Posiotion pos)
             Posiotion a;
             a.xPos=i;
             a.yPos=j;
-            PossibleMoves.push_back(a);
+            possibleMoves.push_back(a);
+
     }
     }
     pos.xPos=First_x;
@@ -80,7 +82,8 @@ void Queen::move(Posiotion pos)
             Posiotion b;
             b.xPos=i;
             b.yPos=j;
-            PossibleMoves.push_back(b);
+            possibleMoves.push_back(b);
+
 
         }
     }
@@ -91,7 +94,8 @@ void Queen::move(Posiotion pos)
             Posiotion c;
             c.xPos=i;
             c.yPos=j;
-            PossibleMoves.push_back(c);
+            possibleMoves.push_back(c);
+
         }
     }
     pos.xPos=First_x;
@@ -103,10 +107,11 @@ void Queen::move(Posiotion pos)
             Posiotion d;
             d.xPos=i;
             d.yPos=j;
-            PossibleMoves.push_back(d);
+            possibleMoves.push_back(d);
+
         }
     }
-
+return possibleMoves;
 }
 
 Queen::~Queen()

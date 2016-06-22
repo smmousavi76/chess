@@ -30,6 +30,7 @@ public:
     int remove_piecce();
     void translate_socket();
     void send_socket();
+    void WhichPiece();
 
     };
 

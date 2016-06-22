@@ -24,6 +24,23 @@ void Client::cycle(Data data)
 {
     window->clear();
     window->draw(*board);
+    for(int i=0;i< data.possibleMoves.size();i++)
+    {
+        sf::RectangleShape rect(sf::Vector2f(95, 95));
+        rect.setOrigin(rect.getGlobalBounds().width/2, rect.getGlobalBounds().height/2);
+        rect.setPosition(data.possibleMoves[i].xPos*100+50, data.possibleMoves[i].yPos*100+50);
+        rect.setFillColor(sf::Color::Green);
+        for(int j=0;j<data.pieces.size();j++)
+        {
+            if(data.pieces[j]->pos == data.possibleMoves[i])
+            {
+                rect.setFillColor(sf::Color::Red);
+                break;
+            }
+        }
+        window->draw(rect);
+    }
+
     std::cout <<data.pieces.size() <<"\n";
     for(int i=0;i<data.pieces.size();i++)
     {

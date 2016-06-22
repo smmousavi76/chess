@@ -8,9 +8,11 @@
  private:
 
  public:
+        std::vector<Posiotion> possibleMoves;
+        std::vector <Posiotion> PossibleMove();
+
         Rook(int owner,int count);
         virtual ~Rook();
-        void move(Posiotion pos);
 
  };
  #endif

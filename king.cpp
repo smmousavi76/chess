@@ -21,34 +21,34 @@ King::King(int owner):Piece( owner)
     }
 
 }
-void King::move(Posiotion pos)
+std::vector <Posiotion> King::PossibleMove()
 {
    int First_x=pos.xPos;
    int First_y=pos.yPos;
     Posiotion a;
     a.xPos=pos.xPos;
     a.yPos=pos.yPos+1;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.yPos=pos.yPos+1;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.xPos=pos.xPos+1;
     a.yPos=pos.yPos;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.xPos=pos.xPos-1;
     a.yPos=pos.yPos;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.xPos=pos.xPos+1;
     a.yPos=pos.yPos+1;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.xPos=pos.xPos-1;
     a.yPos=pos.yPos+1;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.xPos=pos.xPos+1;
     a.yPos=pos.yPos-1;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
     a.xPos=pos.xPos-1;
     a.yPos=pos.yPos-1;
-    PossibleMoves.push_back(a);
+    possibleMoves.push_back(a);
 
 }
 King::~King()

@@ -8,9 +8,11 @@ private:
 
 
 public:
+    std::vector<Posiotion> possibleMoves;
     Pawn(int owner,int count);
    virtual ~Pawn();
-void move(Posiotion pos);
+    std::vector <Posiotion> PossibleMove();
+
 };
 
 

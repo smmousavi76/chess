@@ -29,7 +29,7 @@ if(owner==1)
 
 }
 
-void Bishop::move(Posiotion Pos)
+std::vector <Posiotion> Bishop::PossibleMove()
 {
     int First_x=pos.xPos;
     int First_y=pos.yPos;
@@ -42,7 +42,7 @@ void Bishop::move(Posiotion Pos)
             Posiotion a;
             a.xPos=i;
             a.yPos=j;
-            PossibleMoves.push_back(a);
+            possibleMoves.push_back(a);
     }
     }
     pos.xPos=First_x;
@@ -54,7 +54,7 @@ void Bishop::move(Posiotion Pos)
             Posiotion b;
             b.xPos=i;
             b.yPos=j;
-            PossibleMoves.push_back(b);
+            possibleMoves.push_back(b);
 
         }
     }
@@ -65,7 +65,7 @@ void Bishop::move(Posiotion Pos)
             Posiotion c;
             c.xPos=i;
             c.yPos=j;
-            PossibleMoves.push_back(c);
+            possibleMoves.push_back(c);
         }
     }
     pos.xPos=First_x;
@@ -77,9 +77,11 @@ void Bishop::move(Posiotion Pos)
             Posiotion d;
             d.xPos=i;
             d.yPos=j;
-            PossibleMoves.push_back(d);
+            possibleMoves.push_back(d);
         }
     }
+    ;
+    return possibleMoves;
 }
 Bishop::~Bishop()
 {

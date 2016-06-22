@@ -8,7 +8,7 @@ struct CPiece
     int typeId;
     int owner;
     Posiotion pos;
-    std::vector<Posiotion> PossibleMoves;
+   // std::vector<Posiotion> PossibleMoves;
 };
 
 #endif // CPIECE_H_INCLUDED

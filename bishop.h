@@ -9,9 +9,10 @@ class Bishop:public Piece
 {
 
 public:
+    std::vector<Posiotion> possibleMoves;
     Bishop(int owner,int count);
     virtual ~Bishop();
-    void move(Posiotion pos);
+    std::vector <Posiotion> PossibleMove();
 };
 
 #endif
