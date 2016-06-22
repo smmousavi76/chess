@@ -19,6 +19,7 @@ public:
     std::vector<Piece*> pieces;
     Player(int id);
     void prepair();
+    int Piece_Count;
 };
 
 #endif // PLAYER_H_INCLUDED

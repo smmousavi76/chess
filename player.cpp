@@ -2,6 +2,7 @@
 Player::Player(int id)
 {
  this->playerId=id;
+ Piece_Count=16;
 }
 
 void Player::prepair()

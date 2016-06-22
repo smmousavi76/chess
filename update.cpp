@@ -20,9 +20,8 @@ Update::Update()
 {
     for(int i=0;i<2;i++)
         player[i] = new Player(i);
-    playerTurn = 0;//first player
-    phase = -1; ///Phase Pre
-    //del=0;
+    playerTurn = 0;
+    phase = -1;
 }
 void Update::getEvent(MouseEvent& mouse,Data& data)
 {
@@ -47,17 +46,20 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
     if(mouse.clicked)
     {
         //data.possibleMoves.clear();
-        Piece* target;
         translatePos(mouse.pos);
         if(phase == 0) ///Phase Select Mine Piece
         {
             target = whichPiece(mouse.pos);
-            target->PossibleMove();
+            for(int i=0;i<target->PossibleMove().size();i++)
+            {
+             data.possibleMoves[i]=target->PossibleMove()[i];
+            }
 
             if(target != nullptr)
-                /*
+
                 if(target->owner == playerTurn)
                 {
+                    /*
                     for(int i=target->pos.xPos-target->range;i<=target->pos.xPos+target->range;i++)
                     {
                         for(int j=target->pos.yPos-target->range;j<=target->pos.yPos+target->range;j++)
@@ -76,8 +78,9 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                             }
 
                         }
+                        */
                     }
-                    */
+
                     if(data.possibleMoves.size()>0)
                     {
                         lastTarget = target;
@@ -98,10 +101,10 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 }
             if(flag)
             {
-                //target = whichPiece(mouse.pos);
-              //  if(target == nullptr)
-               // {
-               /*
+               target = whichPiece(mouse.pos);
+                if(target == nullptr)
+               {
+
                     lastTarget->move(mouse.pos);
                     data.possibleMoves.clear();
                     phaseChanger();
@@ -109,7 +112,8 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 }
                 else if(target->owner == (playerTurn+1)%2)
                 {
-                    //lastTarget->attack(target);
+                    lastTarget->move(mouse.pos);
+                    Attack(target,data);
                     data.possibleMoves.clear();
                     phaseChanger();
                     playerChanger();
@@ -118,19 +122,17 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
         }
         return;
+
     }
-    */
-}
 
 
-}
-}
+
 
 bool Update::finish()
     {
-        //if(player[2]->count_piecce==0||player[1]->count_piecce==0)
-       //     return 1;
-       // else return 0;
+        if(player[2]->Piece_Count==0||player[1]->Piece_Count==0)
+           return 1;
+        else return 0;
     }
 
 Update::~Update()
@@ -161,4 +163,10 @@ Piece* Update::whichPiece(Posiotion pos)
     return nullptr;
 }
 
+void Update::Attack(Piece *target ,Data data)
+{
+        // remove from vector
+    //data->pieces.pop
+
+}
 

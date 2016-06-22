@@ -13,12 +13,14 @@ private:
     int phase;
     Player *player[2];
     Piece* lastTarget;
+
 public:
+    Piece* target;
+
     bool del;
     Update();
     ~Update();
-    bool canAttack();
-    void Attack();
+    void Attack(Piece *target,Data data );
     void NewPosition();
     void getEvent(MouseEvent&,Data&);
     void translatePos(Posiotion&);
