@@ -31,9 +31,34 @@ std::vector <Posiotion> Knight::PossibleMove()
     int First_x=pos.xPos;
     int First_y=pos.yPos;
     Posiotion a;
-    a.xPos=pos.xPos;
-    a.yPos=pos.yPos;
-possibleMoves.push_back(a);
+
+    a.xPos = pos.xPos-1;
+    a.yPos = pos.yPos+2;
+    PossibleMoves.push_back(a);
+    a.xPos = pos.xPos-1;
+    a.yPos = pos.yPos-2;
+    PossibleMoves.push_back(a);
+
+    a.xPos = pos.xPos+1;
+    a.yPos = pos.yPos-2;
+    PossibleMoves.push_back(a);
+    a.xPos = pos.xPos+1;
+    a.yPos = pos.yPos+2;
+    PossibleMoves.push_back(a);
+
+    a.xPos = pos.xPos-2;
+    a.yPos = pos.yPos-1;
+    PossibleMoves.push_back(a);
+    a.xPos = pos.xPos-2;
+    a.yPos = pos.yPos+1;
+    PossibleMoves.push_back(a);
+
+    a.xPos = pos.xPos+2;
+    a.yPos = pos.yPos-1;
+    PossibleMoves.push_back(a);
+    a.xPos = pos.xPos+2;
+    a.yPos = pos.yPos+1;
+    PossibleMoves.push_back(a);
 }
 Knight::~Knight()
 {
