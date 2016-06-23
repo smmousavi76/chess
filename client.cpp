@@ -36,8 +36,9 @@ void Client::cycle(Data data)
         {
             if(data.pieces[j]->pos == data.possibleMoves[i])
             {
-
                 rect.setFillColor(sf::Color::Red);
+
+
                 break;
             }
         }

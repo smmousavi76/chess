@@ -63,34 +63,34 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                     phaseChanger();
                 }
         }
-            return;
-    }
-    if(phase == 1)
-    {
-        std::cout<<" clicked 5  ";
-        bool flag = false;
-        for(int i=0;i<data.possibleMoves.size();i++)
-            if(mouse.pos == data.possibleMoves[i])
-            {
-                flag = true;
-                break;
-            }
-        if(flag)
+        if(phase == 1)
         {
-            target = whichPiece(mouse.pos);
-            if(target == nullptr)
+            std::cout<<" clicked 5  ";
+            bool flag = false;
+            for(int i=0;i<data.possibleMoves.size();i++)
+                if(mouse.pos == data.possibleMoves[i])
+                {
+                    flag = true;
+                    break;
+                }
+            if(flag)
             {
-                lastTarget->move(mouse.pos);
-                phaseChanger();
-                playerChanger();
-            }
-            else if(target->owner == (playerTurn+1)%2)
-            {
-                lastTarget->move(mouse.pos);
-                Attack(target,data);
-                data.possibleMoves.clear();
-                phaseChanger();
-                playerChanger();
+                target = whichPiece(mouse.pos);
+                if(target == nullptr)
+                {
+                    lastTarget->move(mouse.pos);
+                    data.possibleMoves.clear();
+                    phaseChanger();
+                    playerChanger();
+                }
+                else if(target->owner == (playerTurn+1)%2)
+                {
+                    lastTarget->move(mouse.pos);
+                    Attack(target,data);
+                    data.possibleMoves.clear();
+                    phaseChanger();
+                    playerChanger();
+                }
             }
         }
     }
