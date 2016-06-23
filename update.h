@@ -5,6 +5,8 @@
 #include "MouseEvent.h"
 #include "Data.h"
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include "Client.h"
 class Update
 {
 private:
@@ -16,7 +18,7 @@ private:
 
 public:
     Piece* target;
-
+    Client client;
     bool del;
     Update();
     ~Update();

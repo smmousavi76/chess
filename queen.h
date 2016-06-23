@@ -8,7 +8,7 @@ private:
 
 
 public:
-    std::vector<Posiotion> possibleMoves;
+   // std::vector<Posiotion> possibleMoves;
     std::vector <Posiotion> PossibleMove();
 
     Queen(int owner);

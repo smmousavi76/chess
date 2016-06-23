@@ -25,6 +25,7 @@ Update::Update()
 }
 void Update::getEvent(MouseEvent& mouse,Data& data)
 {
+
     std::cout <<phase <<"\n";
     if(phase == -1)
     {
@@ -45,20 +46,26 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
     }
     if(mouse.clicked)
     {
-        //data.possibleMoves.clear();
+                std::cout<<" clicked   ";
+
         translatePos(mouse.pos);
+        target = whichPiece(mouse.pos);
+        client.loadPossibleMoves(target);
+
         if(phase == 0) ///Phase Select Mine Piece
         {
-            target = whichPiece(mouse.pos);
-            for(int i=0;i<target->PossibleMove().size();i++)
-            {
-             data.possibleMoves[i]=target->PossibleMove()[i];
-            }
+                            std::cout<<" clicked  2 ";
+
+                            std::cout<<" clicked   2/5";
+
+
 
             if(target != nullptr)
 
                 if(target->owner == playerTurn)
                 {
+                                    std::cout<<" clicked  3 ";
+
                     /*
                     for(int i=target->pos.xPos-target->range;i<=target->pos.xPos+target->range;i++)
                     {
@@ -83,6 +90,8 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
                     if(data.possibleMoves.size()>0)
                     {
+                                        std::cout<<" clicked  4 ";
+
                         lastTarget = target;
                         phaseChanger();
                     }
@@ -90,8 +99,10 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
             return;
         }
-        if(phase == 1) ///Phase Select Destination
+        if(phase == 1)
         {
+        std::cout<<" clicked 5  ";
+
             bool flag = false;
             for(int i=0;i<data.possibleMoves.size();i++)
                 if(mouse.pos == data.possibleMoves[i])
@@ -105,8 +116,9 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 if(target == nullptr)
                {
 
+
                     lastTarget->move(mouse.pos);
-                    data.possibleMoves.clear();
+
                     phaseChanger();
                     playerChanger();
                 }

@@ -8,6 +8,47 @@ Client::Client()
     window->setFramerateLimit(30);
 
 }
+void Client::loadPossibleMoves(Piece *target)
+{
+     window->clear();
+    window->draw(*board);
+     for(int i=0;i< target->possibleMoves.size();i++)
+    {
+        sf::RectangleShape rect(sf::Vector2f(95, 95));
+        rect.setOrigin(rect.getGlobalBounds().width/2, rect.getGlobalBounds().height/2);
+
+        rect.setPosition(target->possibleMoves[i].xPos*100+50, target->possibleMoves[i].yPos*100+50);
+        rect.setFillColor(sf::Color::Green);
+        for(int j=0;j<data.pieces.size();j++)
+        {
+            if(data.pieces[j]->pos == data.possibleMoves[i])
+            {
+
+                rect.setFillColor(sf::Color::Red);
+                break;
+            }
+        }
+        window->draw(rect);
+    }
+    std::cout<<"yes";
+
+    std::cout <<data.pieces.size() <<"\n";
+    for(int i=0;i<data.pieces.size();i++)
+    {
+        sf::Sprite sprite;
+        sprite.setTexture(pieceTexture[data.pieces[i]->typeId]);
+        sprite.setOrigin(sprite.getGlobalBounds().width/2,sprite.getGlobalBounds().height/2);
+        sprite.setPosition(target->possibleMoves[i].xPos*100+50, target->possibleMoves[i].yPos*100+50);
+        if(data.pieces[i]->owner)
+            ;
+           // sprite.setRotation(180);
+        else
+            sprite.setRotation(0);
+            window->draw(sprite);
+    }
+    window->display();
+    std::cout<<"\n yes 2";
+}
 
 Client::~Client()
 {
@@ -22,12 +63,13 @@ void Client::start()
 
 void Client::cycle(Data data)
 {
-    window->clear();
-    window->draw(*board);
-    for(int i=0;i< data.possibleMoves.size();i++)
+
+    /*
+    for(int i=0;i< target->.size();i++)
     {
         sf::RectangleShape rect(sf::Vector2f(95, 95));
         rect.setOrigin(rect.getGlobalBounds().width/2, rect.getGlobalBounds().height/2);
+                   // std::cout<<" clicked  ii  ";
 
         rect.setPosition(data.possibleMoves[i].xPos*100+50, data.possibleMoves[i].yPos*100+50);
         rect.setFillColor(sf::Color::Green);
@@ -35,6 +77,7 @@ void Client::cycle(Data data)
         {
             if(data.pieces[j]->pos == data.possibleMoves[i])
             {
+
                 rect.setFillColor(sf::Color::Red);
                 break;
             }
@@ -57,9 +100,10 @@ void Client::cycle(Data data)
             window->draw(sprite);
     }
 
+*/
 
 
-    window->display();
+   // window->display();
 }
 
 Event Client::getEvent()
