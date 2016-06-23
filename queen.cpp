@@ -32,80 +32,39 @@ std::vector <Posiotion> Queen:: PossibleMove()
     {
 
         Posiotion a;
+        a.yPos=i;
         a.xPos=First_x;
         possibleMoves.push_back(a);
     }
-    pos.xPos=First_x;
-    pos.yPos=First_y;
-    for(int i=pos.yPos;i>0;i--)
+        pos.xPos=First_x;
+        pos.yPos=First_y;
+    for(int i=pos.yPos;i>=0;i--)
     {
         Posiotion b;
         b.xPos=First_x;
+        b.yPos=i;
         possibleMoves.push_back(b);
     }
     pos.xPos=First_x;
     pos.yPos=First_y;
-
     for(int i=pos.xPos;i<=8;i++)
     {
         Posiotion c;
+        c.xPos=i;
         c.yPos=First_y;
         possibleMoves.push_back(c);
     }
     pos.xPos=First_x;
     pos.yPos=First_y;
-     for(int i=pos.xPos;i>0;i--)
-     {
-         Posiotion d;
-         d.yPos=First_y;
-         possibleMoves.push_back(d);
-     }
-    for(int i=pos.xPos;i<=8;i++)
+    for(int i=pos.xPos;i>=0;i--)
     {
-        for(int j=pos.yPos;j<=8;j++)
-        {
-            Posiotion a;
-            a.xPos=i;
-            a.yPos=j;
-            possibleMoves.push_back(a);
-        }
+        Posiotion d;
+        d.xPos=i;
+        d.yPos=First_y;
+        possibleMoves.push_back(d);
     }
-        pos.xPos=First_x;
-        pos.yPos=First_y;
-        for(int i=pos.xPos;i>0;i++)
-        {
-            for(int j=pos.yPos;j>=8;j++)
-            {
-                Posiotion b;
-                b.xPos=i;
-                b.yPos=j;
-                possibleMoves.push_back(b);
-            }
-        }
-        for(int i=pos.xPos;i>0;i--)
-        {
-            for(int j=pos.yPos;j>0;j--)
-            {
-                Posiotion c;
-                c.xPos=i;
-                c.yPos=j;
-                possibleMoves.push_back(c);
 
-            }
-        }
-        pos.xPos=First_x;
-        pos.yPos=First_y;
-        for(int i=pos.xPos;i<=8;i++)
-        {
-            for(int j=pos.yPos;j>0;j--)
-            {
-                Posiotion d;
-                d.xPos=i;
-                d.yPos=j;
-                possibleMoves.push_back(d);
 
-            }
-        }
     return possibleMoves;
 }
 
