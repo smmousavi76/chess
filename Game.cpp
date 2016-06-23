@@ -3,7 +3,8 @@
 #include "Client.h"
 Game::Game()
 {
-    client = new Client();
+    bool d=1;
+    client = new Client(d);
 }
 
 void Game::start()

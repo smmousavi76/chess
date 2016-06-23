@@ -1,19 +1,25 @@
 #include "Client.h"
 #include <iostream>
 
-Client::Client()
+Client::Client(bool s)
 {
+    if(s==1)
+    {
+    std::cout<<" h \n";
     setting.antialiasingLevel = 4;
     window = new sf::RenderWindow(sf::VideoMode(800,800), "Chess " , sf::Style::Default, setting);
     window->setFramerateLimit(30);
+    }
+
 
 }
 void Client::loadPossibleMoves(Piece *target)
 {
-     window->clear();
-    window->draw(*board);
+
+    std::cout<<"\n heloooooooo";
      for(int i=0;i< target->possibleMoves.size();i++)
     {
+        std::cout<<"ssssssssssss \n";
         sf::RectangleShape rect(sf::Vector2f(95, 95));
         rect.setOrigin(rect.getGlobalBounds().width/2, rect.getGlobalBounds().height/2);
 
@@ -60,11 +66,13 @@ void Client::start()
   makeBoard();
   loadTexture();
 }
-
 void Client::cycle(Data data)
 {
+    std::cout<<"bug \n";
+    window->clear();
+    window->draw(*board);
+/*
 
-    /*
     for(int i=0;i< target->.size();i++)
     {
         sf::RectangleShape rect(sf::Vector2f(95, 95));
@@ -85,6 +93,7 @@ void Client::cycle(Data data)
         window->draw(rect);
     }
 
+*/
     std::cout <<data.pieces.size() <<"\n";
     for(int i=0;i<data.pieces.size();i++)
     {
@@ -100,10 +109,11 @@ void Client::cycle(Data data)
             window->draw(sprite);
     }
 
-*/
 
 
-   // window->display();
+
+
+    window->display();
 }
 
 Event Client::getEvent()
@@ -166,6 +176,9 @@ void Client::loadTexture()
 void Client::makeBoard()
 {
     board = new Board(8,8);
+    std::cout<<" board \n";
     sf::RectangleShape r(sf::Vector2f(100,100));
+    std::cout<<"board 2 \n";
     r.setFillColor(sf::Color::White);
+    std::cout<<"board 3 \n";
 }

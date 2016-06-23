@@ -23,7 +23,7 @@ public:
         void loadPossibleMoves(Piece *target);
 
     Data data;
-    Client();
+    Client(bool s);
     ~Client();
     void start();
     void cycle(Data data);

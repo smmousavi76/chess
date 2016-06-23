@@ -50,6 +50,8 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
         translatePos(mouse.pos);
         target = whichPiece(mouse.pos);
+        bool a=0;
+        Client client(a);
         client.loadPossibleMoves(target);
 
         if(phase == 0) ///Phase Select Mine Piece
@@ -64,11 +66,11 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
                 if(target->owner == playerTurn)
                 {
-                                    std::cout<<" clicked  3 ";
+                    std::cout<<" clicked  3 ";
 
                     /*
                     for(int i=target->pos.xPos-target->range;i<=target->pos.xPos+target->range;i++)
-                    {
+
                         for(int j=target->pos.yPos-target->range;j<=target->pos.yPos+target->range;j++)
                         {
                             if(i<0 || j<0 || i>=7 || j>=9)
@@ -90,8 +92,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
                     if(data.possibleMoves.size()>0)
                     {
-                                        std::cout<<" clicked  4 ";
-
+                        std::cout<<" clicked  4 ";
                         lastTarget = target;
                         phaseChanger();
                     }
