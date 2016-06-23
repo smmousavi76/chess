@@ -26,26 +26,25 @@ std::vector <Posiotion> Pawn::PossibleMove()
     int First_y=pos.yPos;
  if(start())
  {
-     for(int i=pos.yPos;i<pos.yPos+2;i++)
-     {
+
          Posiotion a;
-         a.xPos=i;
-         a.yPos=First_y;
+         a.xPos=First_x;
+         a.yPos=pos.yPos+1;
          possibleMoves.push_back(a);
-            ///no possible move for attack
-     }
+         a.yPos=pos.yPos+2;
+         possibleMoves.push_back(a);
+
+
 
  }
  else
  {
 
-     for(int i=pos.yPos;i<pos.yPos+1;i++)
-     {
-         Posiotion a;
-         a.xPos=First_x;
-         a.yPos=pos.yPos;
+       Posiotion a;
+         a.xPos=First_y;
+         a.yPos=pos.yPos+1;
          possibleMoves.push_back(a);
-     }
+
 
  }
  return possibleMoves;
