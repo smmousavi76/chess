@@ -31,6 +31,7 @@ if(owner==1)
 
 std::vector <Posiotion> Bishop::PossibleMove()
 {
+    std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
     int First_y=pos.yPos;
     for(int i=pos.xPos;i<=8;i++)

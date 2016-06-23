@@ -19,7 +19,7 @@ void Game::main()
 
     while(!events.Close)
     {
-      update.getEvent(events.mouseEvent,data);
+        update.getEvent(events.mouseEvent,data);
         client->cycle(data);
         events = client->getEvent();
     }

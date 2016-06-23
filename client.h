@@ -10,7 +10,6 @@
 
 class Client
 {
-
     sf::ContextSettings setting;
     sf::RenderWindow* window;
     sf::Event event;
@@ -20,8 +19,6 @@ class Client
     void makeBoard();
     void loadTexture();
 public:
-        void loadPossibleMoves(Piece *target);
-
     Data data;
     Client(bool s);
     ~Client();

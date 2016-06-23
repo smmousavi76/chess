@@ -8,14 +8,13 @@
 class Piece : public CPiece
 {
 public:
-    std::vector<Posiotion > possibleMoves;
     bool start();
     bool White_Black;
     MouseEvent mouse;
     Piece(int owner);
     virtual ~Piece();
   //  virtual bool attack(Piece* defender) = 0;
-     void move(Posiotion pos) ;
+    void move(Posiotion pos) ;
     virtual std::vector<Posiotion > PossibleMove()=0;
 };
 

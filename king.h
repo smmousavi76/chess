@@ -4,10 +4,7 @@
 #include "Piece.h"
 class King:public Piece
 {
-private:
-
 public:
-
     King(int owner);
     virtual ~King() ;
     std::vector <Posiotion> PossibleMove();

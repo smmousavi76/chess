@@ -4,13 +4,9 @@
 
 class Pawn:public Piece
 {
-private:
-
-
 public:
-   // std::vector<Posiotion> possibleMoves;
     Pawn(int owner,int count);
-   virtual ~Pawn();
+    virtual ~Pawn();
     std::vector <Posiotion> PossibleMove();
 
 };

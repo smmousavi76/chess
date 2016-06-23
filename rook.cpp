@@ -28,47 +28,42 @@ Rook::Rook(int owner,int count) : Piece(owner)
 
 std::vector <Posiotion> Rook::PossibleMove()
 {
+    std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
     int First_y=pos.yPos;
- for(int i=pos.yPos;i<=8;i++)
- {
-
-     Posiotion a;
-     a.xPos=First_x;
-     possibleMoves.push_back(a);
- }
+    for(int i=pos.yPos;i<=8;i++)
+    {
+        Posiotion a;
+        a.xPos=First_x;
+        possibleMoves.push_back(a);
+    }
+        pos.xPos=First_x;
+        pos.yPos=First_y;
+    for(int i=pos.yPos;i>0;i--)
+    {
+        Posiotion b;
+        b.xPos=First_x;
+        possibleMoves.push_back(b);
+    }
     pos.xPos=First_x;
     pos.yPos=First_y;
- for(int i=pos.yPos;i>0;i--)
- {
-     Posiotion b;
-     b.xPos=First_x;
-    possibleMoves.push_back(b);
-
-
- }
+    for(int i=pos.xPos;i<=8;i++)
+    {
+        Posiotion c;
+        c.yPos=First_y;
+        possibleMoves.push_back(c);
+    }
     pos.xPos=First_x;
     pos.yPos=First_y;
-
- for(int i=pos.xPos;i<=8;i++)
- {
-     Posiotion c;
-     c.yPos=First_y;
-    possibleMoves.push_back(c);
-
-
- }
-    pos.xPos=First_x;
-    pos.yPos=First_y;
- for(int i=pos.xPos;i>0;i--)
- {
-     Posiotion d;
-     d.yPos=First_y;
-    possibleMoves.push_back(d);
-
- }
- return possibleMoves;
+    for(int i=pos.xPos;i>0;i--)
+    {
+        Posiotion d;
+        d.yPos=First_y;
+        possibleMoves.push_back(d);
+    }
+    return possibleMoves;
 }
+
 Rook::~Rook()
 {
 

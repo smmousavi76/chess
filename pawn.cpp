@@ -21,6 +21,7 @@ Pawn::Pawn(int owner,int count):Piece(owner)
 }
 std::vector <Posiotion> Pawn::PossibleMove()
 {
+    std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
     int First_y=pos.yPos;
  if(start())

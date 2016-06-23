@@ -7,7 +7,6 @@
 using namespace std;
 class Bishop:public Piece
 {
-
 public:
     Bishop(int owner,int count);
     virtual ~Bishop();

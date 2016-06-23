@@ -5,14 +5,9 @@
 
  class Rook :public Piece
  {
- private:
-
  public:
-       // std::vector<Posiotion> possibleMoves;
-        std::vector <Posiotion> PossibleMove();
-
-        Rook(int owner,int count);
-        virtual ~Rook();
-
+    std::vector <Posiotion> PossibleMove();
+    Rook(int owner,int count);
+    virtual ~Rook();
  };
  #endif

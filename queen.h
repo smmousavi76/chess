@@ -4,13 +4,8 @@
 #include "Position.h"
 class Queen :public Piece
 {
-private:
-
-
 public:
-   // std::vector<Posiotion> possibleMoves;
     std::vector <Posiotion> PossibleMove();
-
     Queen(int owner);
     virtual ~Queen();
 
