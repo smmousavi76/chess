@@ -33,7 +33,9 @@ std::vector <Posiotion> Rook::PossibleMove()
     int First_y=pos.yPos;
     for(int i=pos.yPos;i<=8;i++)
     {
+
         Posiotion a;
+        a.yPos=i;
         a.xPos=First_x;
         possibleMoves.push_back(a);
     }
@@ -43,6 +45,7 @@ std::vector <Posiotion> Rook::PossibleMove()
     {
         Posiotion b;
         b.xPos=First_x;
+        b.yPos=i;
         possibleMoves.push_back(b);
     }
     pos.xPos=First_x;
@@ -50,6 +53,7 @@ std::vector <Posiotion> Rook::PossibleMove()
     for(int i=pos.xPos;i<=8;i++)
     {
         Posiotion c;
+        c.xPos=i;
         c.yPos=First_y;
         possibleMoves.push_back(c);
     }
@@ -58,6 +62,7 @@ std::vector <Posiotion> Rook::PossibleMove()
     for(int i=pos.xPos;i>0;i--)
     {
         Posiotion d;
+        d.xPos=i;
         d.yPos=First_y;
         possibleMoves.push_back(d);
     }
