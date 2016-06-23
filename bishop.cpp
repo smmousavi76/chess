@@ -29,64 +29,23 @@ if(owner==1)
 
 }
 
+
 std::vector <Posiotion> Bishop::PossibleMove()
 {
-   std::vector<Posiotion> possibleMoves;
+    std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
-
     int First_y=pos.yPos;
-        Posiotion a;
-
-
-    for(int i=pos.xPos;i<=8;i++)
+    for(int i=1;i<8;i++)
     {
-        for(int j=pos.yPos;j<=8;j++)
-        {
-
-    a.xPos=i;
-    a.yPos=j;
-    possibleMoves.push_back(a);
-
-    }
-    }
-    pos.xPos=First_x;
-    pos.yPos=First_y;
-    for(int i=pos.xPos;i>0;i++)
-    {
-        for(int j=pos.yPos;j>=8;j++)
-        {
-          //  Posiotion a;
-            a.xPos=i;
-            a.yPos=j;
-            possibleMoves.push_back(a);
-
-        }
-    }
-    for(int i=pos.xPos;i>=0;i--)
-    {
-        for(int j=pos.yPos;j>=0;j--)
-        {
-            //Posiotion a;
-            a.xPos=i;
-            a.yPos=j;
-            possibleMoves.push_back(a);
-        }
-    }
-    pos.xPos=First_x;
-    pos.yPos=First_y;
-    for(int i=pos.xPos;i<=8;i++)
-    {
-        for(int j=pos.yPos;j>=0;j--)
-        {
-            //Posiotion a;
-            a.xPos=i;
-            a.yPos=j;
-            possibleMoves.push_back(a);
-        }
+        possibleMoves.push_back(Posiotion(First_x+i,First_y+i));
+        possibleMoves.push_back(Posiotion(First_x+i,First_y-i));
+        possibleMoves.push_back(Posiotion(First_x-i,First_y+i));
+        possibleMoves.push_back(Posiotion(First_x-i,First_y-i));
     }
 
     return possibleMoves;
 }
+
 Bishop::~Bishop()
 {
 
