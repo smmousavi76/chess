@@ -50,17 +50,30 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
             if(target != nullptr)
                 if(target->owner == playerTurn)
                 {
-                    /// inja chack kon ke khoone toosh khali bashe ya doshman bashe
                     for(auto po : target->PossibleMove())
                     {
-                        data.possibleMoves.push_back(po);
+                       // std::cout«"po \n ";
+                        Piece *a;
+                        //std::cout«"po 2 \n ";
+                        a=whichPiece(po);
+                        //std::cout«"po 3 \n";
+                        if(a!=nullptr)
+                        {
+                            if(a->owner!=target->owner)
+                            {
+                                   data.possibleMoves.push_back(po);
+                            }
+                        }
+                        else
+                        {
+                            data.possibleMoves.push_back(po);
+                        }
                     }
-                    ///
-                }
-                if(data.possibleMoves.size()>0)
-                {
-                    lastTarget = target;
-                    phaseChanger();
+                    if(data.possibleMoves.size()>0)
+                    {
+                        lastTarget = target;
+                        phaseChanger();
+                    }
                 }
         }
         if(phase == 1)
