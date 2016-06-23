@@ -65,6 +65,25 @@ std::vector <Posiotion> Queen:: PossibleMove()
     }
 
 
+
+
+    pos.xPos=First_x;
+    pos.yPos=First_y;
+    for(int i=1;i<8;i++)
+    {
+        possibleMoves.push_back(Posiotion(First_x+i,First_y+i));
+        possibleMoves.push_back(Posiotion(First_x+i,First_y-i));
+        possibleMoves.push_back(Posiotion(First_x-i,First_y+i));
+        possibleMoves.push_back(Posiotion(First_x-i,First_y-i));
+    }
+
+
+
+
+
+
+
+
     return possibleMoves;
 }
 
