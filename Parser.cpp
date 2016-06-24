@@ -1,8 +1,8 @@
-#include "Parser.hpp"
+#include "Parser.h"
 #include <iostream>
 
 using namespace std;
-/*
+
 string Parser::removespace(string str)
 {
     string test = "";
@@ -163,9 +163,9 @@ string Parser::_(string& str)
     return "";
 }
 
-Graph* Parser::read(string remainedJson)
+CPiece* Parser::read(string remainedJson)
 {
-    Graph* graph = new Graph;
+    CPiece* cpiece = new cpiece;
     remainedJson = removespace(remainedJson);
     string currentJson = currentSelect(remainedJson);
     //cout <<currentJson;
@@ -178,59 +178,56 @@ Graph* Parser::read(string remainedJson)
         while (secondLayer[0] != '[' || secondLayer[1] != ']')
         {
             data = firstOfList(secondLayer);
-            int index, color;
-            bool type;
+            int owner, typeId;
+            //bool type;
             for(unsigned int i=0;i<3;i++)
             {
                 string tmp = typeSpecifier(data);
-                if(tmp == "index")
+                if(tmp == "owner")
                 {
                     index = stoi(dataSpecifier(data));
                 }
-                if(tmp == "color")
+                if(tmp == "id")
                 {
                     color = stoi(dataSpecifier(data));
                 }
-                if(tmp == "type")
-                {
-                    type = stoi(dataSpecifier(data));
-                }
+
             }
-            graph->nodes.push_back(new Node(index,color,type));
+            ///data->cpiece.push_back(new Node(index,color,type));
         }
     }
     while(currentJson != "")
     {
         type = typeSpecifier(currentJson);
         secondLayer = _(currentJson);
-        if(type != "nodes")
+        if(type != "cpiece")
         {
             int index = stoi(type)-1;
             while (secondLayer[0] != '[' || secondLayer[1] != ']')
             {
-                string dstIndex = firstOfList2(secondLayer);
-                string weight = firstOfList2(secondLayer);
-                graph->nodes[index]->addAdjNode(graph->nodes[stoi(dstIndex)-1],stoi(weight));
+               // string dstIndex = firstOfList2(secondLayer);
+               // string weight = firstOfList2(secondLayer);
+                //data->pieces[owner]->addAdjNode(graph->nodes[stoi(dstIndex)-1],stoi(weight));
             }
         }
     }
     return graph;
 }
 
-string Parser::write(Node* node)
+string Parser::write(CPiece* cpiece)
 {
     string tmp = "";
     tmp += "{";
-    tmp += "\"index\":" + std::to_string(node->getIndex());
+   /// tmp += "\"index\":" + std::to_string(node->getIndex());
     tmp += ",";
-    tmp += "\"type\":" + std::to_string(node->getType());
+   /// tmp += "\"type\":" + std::to_string(node->getType());
     tmp += ",";
-    tmp += "\"color\":" + std::to_string(node->getColor());
+   /// tmp += "\"color\":" + std::to_string(node->getColor());
     tmp += "}";
     return tmp;
 }
-
-string Parser::write(QList<Edge*> edges)
+/*
+string Parser::write(QList<Edge*> )
 {
     string tmp = "[";
 
@@ -269,4 +266,5 @@ string Parser::write(Graph* graph)
     tmp.back() = '}';
     return tmp;
 }
+
 */

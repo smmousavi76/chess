@@ -1,11 +1,11 @@
 #ifndef PARSER_HPP_INCLUDED
 #define PARSER_HPP_INCLUDED
-/*
+
 #include <string>
 
-class Graph;
-class Node;
-class Edge;
+//class Graph;
+//class Node;
+//class Edge;
 
 class Parser
 {
@@ -16,13 +16,13 @@ class Parser
     static std::string firstOfList(std::string& str);
     static std::string firstOfList2(std::string& str);
     static std::string _(std::string& str);
-    static std::string write(Node* node);
-    static std::string write(QList<Edge*> edges);
+   //static std::string write(Node* node);
+   // static std::string write(QList<Edge*> edges);
 public:
-    static std::string write(Graph* graph);
-    static Graph* read(std::string);
+   // static std::string write(Graph* graph);
+  //  static Graph* read(std::string);
 };
 
-*/
+
 
 #endif //PARSER_HPP_INCLUDED

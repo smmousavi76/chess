@@ -43,38 +43,40 @@
 			<Add library="SFML-2.3.2\lib\libsfml-window.a" />
 			<Add directory="SFML-2.3.2/lib" />
 		</Linker>
-		<Unit filename="Bishop.cpp" />
 		<Unit filename="Board.cpp" />
 		<Unit filename="Board.h" />
 		<Unit filename="CPiece.h" />
 		<Unit filename="Cell.cpp" />
 		<Unit filename="Cell.h" />
-		<Unit filename="Client.cpp" />
 		<Unit filename="Client.h" />
 		<Unit filename="Data.h" />
 		<Unit filename="Event.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
-		<Unit filename="King.cpp" />
 		<Unit filename="King.h" />
-		<Unit filename="Knight.cpp" />
 		<Unit filename="Knight.h" />
 		<Unit filename="MouseEvent.h" />
-		<Unit filename="Pawn.cpp" />
+		<Unit filename="Parser.cpp" />
+		<Unit filename="Parser.h" />
 		<Unit filename="Pawn.h" />
 		<Unit filename="Piece.cpp" />
 		<Unit filename="Piece.h" />
 		<Unit filename="Player.h" />
 		<Unit filename="Position.h" />
-		<Unit filename="Queen.cpp" />
 		<Unit filename="Queen.h" />
 		<Unit filename="Rook.cpp" />
 		<Unit filename="Rook.h" />
-		<Unit filename="Update.cpp" />
-		<Unit filename="Update.h" />
+		<Unit filename="bishop.cpp" />
 		<Unit filename="bishop.h" />
+		<Unit filename="client.cpp" />
+		<Unit filename="king.cpp" />
+		<Unit filename="knight.cpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="pawn.cpp" />
 		<Unit filename="player.cpp" />
+		<Unit filename="queen.cpp" />
+		<Unit filename="update.cpp" />
+		<Unit filename="update.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
