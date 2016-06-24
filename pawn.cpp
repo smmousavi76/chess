@@ -24,32 +24,45 @@ std::vector <Posiotion> Pawn::PossibleMove(int owner)
     std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
     int First_y=pos.yPos;
- if(start())
- {
-
+    if (owner == 0){
+        if(start()){
          Posiotion a;
          a.xPos=First_x;
          a.yPos=pos.yPos+1;
          possibleMoves.push_back(a);
          a.yPos=pos.yPos+2;
          possibleMoves.push_back(a);
-
-
-
- }
- else
- {
-
-       Posiotion a;
+    }
+    else {
+         Posiotion a;
          a.xPos=First_y;
          a.yPos=pos.yPos+1;
          possibleMoves.push_back(a);
+    }
+    return possibleMoves;
 
+    }
+    else {
+        if(start()){
+         Posiotion a;
+         a.xPos=First_x;
+         a.yPos=pos.yPos-1;
+         possibleMoves.push_back(a);
+         a.yPos=pos.yPos-2;
+         possibleMoves.push_back(a);
+    }
+    else {
+         Posiotion a;
+         a.xPos=First_y;
+         a.yPos=pos.yPos-1;
+         possibleMoves.push_back(a);
+    }
+    return possibleMoves;
 
- }
- return possibleMoves;
-
+    }
 }
+
+
 Pawn::~Pawn()
 {
 
