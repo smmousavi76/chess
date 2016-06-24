@@ -26,7 +26,7 @@ Rook::Rook(int owner,int count) : Piece(owner)
     }
 }
 
-std::vector <Posiotion> Rook::PossibleMove()
+std::vector <Posiotion> Rook::PossibleMove(int owner)
 {
     std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;

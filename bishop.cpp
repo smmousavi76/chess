@@ -30,12 +30,14 @@ if(owner==1)
 }
 
 
-std::vector <Posiotion> Bishop::PossibleMove()
+std::vector <Posiotion> Bishop::PossibleMove(int owner)
 {
     std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
     int First_y=pos.yPos;
-    for(int i=1;i<8;i++)
+    if(owner==0)
+    {
+      for(int i=1;i<8;i++)
     {
         possibleMoves.push_back(Posiotion(First_x+i,First_y+i));
         possibleMoves.push_back(Posiotion(First_x+i,First_y-i));
@@ -44,6 +46,20 @@ std::vector <Posiotion> Bishop::PossibleMove()
     }
 
     return possibleMoves;
+    }
+    else
+    {
+        for(int i=8;i>0;i--)
+        {
+        possibleMoves.push_back(Posiotion(First_x+i,First_y+i));
+        possibleMoves.push_back(Posiotion(First_x+i,First_y-i));
+        possibleMoves.push_back(Posiotion(First_x-i,First_y+i));
+        possibleMoves.push_back(Posiotion(First_x-i,First_y-i));
+        }
+        return possibleMoves;
+
+    }
+
 }
 
 Bishop::~Bishop()

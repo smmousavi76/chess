@@ -15,7 +15,7 @@ public:
     virtual ~Piece();
   //  virtual bool attack(Piece* defender) = 0;
     void move(Posiotion pos) ;
-    virtual std::vector<Posiotion > PossibleMove()=0;
+    virtual std::vector<Posiotion > PossibleMove(int owner)=0;
 };
 
 #endif // PIECE_H_INCLUDED

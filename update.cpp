@@ -50,7 +50,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
             if(target != nullptr)
                 if(target->owner == playerTurn)
                 {
-                    for(auto po : target->PossibleMove())
+                    for(auto po : target->PossibleMove(target->owner))
                     {
                        // std::cout«"po \n ";
                         Piece *a;

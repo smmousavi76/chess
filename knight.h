@@ -7,7 +7,7 @@ class Knight:public Piece
 public:
     Knight(int owner,int count);
     virtual ~Knight ();
-    std::vector <Posiotion> PossibleMove();
+    std::vector <Posiotion> PossibleMove(int owner);
 
 };
 #endif

@@ -23,7 +23,7 @@ Queen::Queen(int owner):Piece( owner)
     }
 }
 
-std::vector <Posiotion> Queen:: PossibleMove()
+std::vector <Posiotion> Queen:: PossibleMove(int owner)
 {
     std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;

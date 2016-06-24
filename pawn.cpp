@@ -19,7 +19,7 @@ Pawn::Pawn(int owner,int count):Piece(owner)
         pos.yPos = 6;
     }
 }
-std::vector <Posiotion> Pawn::PossibleMove()
+std::vector <Posiotion> Pawn::PossibleMove(int owner)
 {
     std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;

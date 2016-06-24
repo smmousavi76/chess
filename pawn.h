@@ -7,7 +7,7 @@ class Pawn:public Piece
 public:
     Pawn(int owner,int count);
     virtual ~Pawn();
-    std::vector <Posiotion> PossibleMove();
+    std::vector <Posiotion> PossibleMove(int owner);
 
 };
 

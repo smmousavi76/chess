@@ -5,7 +5,7 @@
 class Queen :public Piece
 {
 public:
-    std::vector <Posiotion> PossibleMove();
+    std::vector <Posiotion> PossibleMove(int owner);
     Queen(int owner);
     virtual ~Queen();
 

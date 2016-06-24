@@ -19,12 +19,12 @@ King::King(int owner):Piece( owner)
         pos.yPos = 7;
     }
 }
-std::vector <Posiotion> King::PossibleMove()
+std::vector <Posiotion> King::PossibleMove(int owner)
 {
     std::vector<Posiotion> possibleMoves;
     int First_x=pos.xPos;
     int First_y=pos.yPos;
-
+    //if(owner==0)
     Posiotion a;
 
     a.xPos=pos.xPos;
