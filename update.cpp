@@ -176,3 +176,11 @@ int Update::vectorPos(Piece *target,Data data)
 
     }
 }
+std::vector<CPiece *> Update::write(std::string recieved);
+{
+
+}
+std::string Update::read(std::vector <CPiece> send);
+{
+
+}

@@ -37,7 +37,8 @@ public:
     void send_socket();
     void WhichPiece();
     void Attack(Piece *target ,Data data);
-
+    std::vector<CPiece *> write(std::string recieved);
+    std::string read(std::vector <CPiece> send);
 
     };
 
