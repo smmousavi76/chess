@@ -38,6 +38,55 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
     {
         translatePos(mouse.pos);
         target = whichPiece(mouse.pos);
+        Piece *target2,*target3;
+        /*
+    if(target!=nullptr)
+{
+
+
+        if(target->owner==0)
+        {
+        Posiotion pos,pos1;
+        pos.xPos=mouse.pos.xPos+1;
+        pos.yPos=mouse.pos.yPos+1;
+        pos1.xPos=mouse.pos.xPos-1;
+        pos1.yPos=mouse.pos.yPos+1;
+        translatePos(pos);
+        translatePos(pos1);
+        target3=whichPiece(pos1);
+        target2=whichPiece(pos);
+        if((target2!=nullptr||target3!=nullptr)&&target!=nullptr)
+        {
+          if(target2->owner!=target->owner||target3->owner!=target->owner)
+            {
+
+                target->enemy=1;
+            }
+        }
+        }
+        if(target->owner==1)
+       {
+        Posiotion pos,pos1;
+        pos.xPos=mouse.pos.xPos+1;
+        pos.yPos=mouse.pos.yPos-1;
+        pos1.xPos=mouse.pos.xPos-1;
+        pos1.yPos=mouse.pos.yPos-1;
+        translatePos(pos);
+        translatePos(pos1);
+        target3=whichPiece(pos1);
+        target2=whichPiece(pos);
+            if((target2!=nullptr||target3!=nullptr)&&target!=nullptr)
+        {
+          if(target2->owner!=target->owner||target3->owner!=target->owner)
+            {
+
+                target->enemy=1;
+            }
+       }
+       }
+
+}
+*/
         if(phase == 0) ///Phase Select Mine Piece
         {
             if(target != nullptr)
@@ -54,6 +103,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                         {
                             if(a->owner!=target->owner)
                             {
+                                ///pawn attack bishop
                                    data.possibleMoves.push_back(po);
                             }
                         }

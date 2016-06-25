@@ -19,6 +19,7 @@ Pawn::Pawn(int owner,int count):Piece(owner)
         pos.yPos = 6;
     }
     isFirstMove = 1;
+    enemy=0;
 }
 std::vector <Posiotion> Pawn::PossibleMove(int owner)
 {
@@ -37,6 +38,7 @@ std::vector <Posiotion> Pawn::PossibleMove(int owner)
          a.yPos=pos.yPos+2;
          possibleMoves.push_back(a);
         isFirstMove = false;
+
         }
         else{
 
@@ -45,6 +47,20 @@ std::vector <Posiotion> Pawn::PossibleMove(int owner)
              a.yPos=First_y;
              a.yPos=pos.yPos+1;
              possibleMoves.push_back(a);
+             if(enemy==1)
+             {
+                 a.xPos=First_x;
+                 a.yPos=First_y;
+                 a.xPos=pos.xPos+1;
+                 a.yPos=pos.yPos+1;
+                 possibleMoves.push_back(a);
+                 a.xPos=First_x;
+                 a.yPos=First_y;
+                 a.xPos=pos.xPos-1;
+                 a.yPos=pos.yPos+1;
+                 possibleMoves.push_back(a);
+
+             }
         }
 
 
@@ -70,6 +86,20 @@ std::vector <Posiotion> Pawn::PossibleMove(int owner)
          a.yPos=First_y;
          a.yPos=pos.yPos-1;
          possibleMoves.push_back(a);
+         if(enemy==1)
+             {
+                 a.xPos=First_x;
+                 a.yPos=First_y;
+                 a.xPos=pos.xPos-1;
+                 a.yPos=pos.yPos-1;
+                 possibleMoves.push_back(a);
+                 a.xPos=First_x;
+                 a.yPos=First_y;
+                 a.xPos=pos.xPos+1;
+                 a.yPos=pos.yPos-1;
+                 possibleMoves.push_back(a);
+
+             }
     }
     count1++;
     return possibleMoves;
