@@ -20,8 +20,8 @@ Update::Update()
 {
     for(int i=0;i<2;i++)
         player[i] = new Player(i);
-    playerTurn = 0;
-    phase = -1;
+        playerTurn = 0;
+        phase = -1;
 }
 void Update::getEvent(MouseEvent& mouse,Data& data)
 {
@@ -99,14 +99,16 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 else if(target->owner == (playerTurn+1)%2)
                 {
                     lastTarget->move(mouse.pos);
-                    Attack(target,data);
+                    player[playerTurn]->Attack(target,data);
                     data.possibleMoves.clear();
                     phaseChanger();
                     playerChanger();
                 }
+
             }
         }
     }
+    target->start();
     return;
 }
 
@@ -121,7 +123,6 @@ Update::~Update()
 {
 
 }
-
 void Update::translatePos(Posiotion& pos)
 {
     pos.xPos /= 100;
@@ -146,36 +147,8 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
-void Update::Attack(Piece *target ,Data data)
-{
 
-    int player_id=target->owner;
-    int piece_id=target->typeId;
-//    int vector_count=target->counter;
-//    int sum=piece_id+vector_count-1;
-    int a=vectorPos(target,data);
-    player[player_id]->pieces.erase(player[player_id]->pieces.begin()+a);
-    //player[player_id]->pieces.erase(player[player_id]->pieces.begin()+sum);
-
-    player[player_id]->Piece_Count--;
-
-}
-
-int Update::vectorPos(Piece *target,Data data)
-{
-    if(target==nullptr)
-    return -1;
-
-    else
-    {
-        for(int i=0;i<data.pieces.size();i++)
-        {
-        if(target==data.pieces[i])
-                return i;
-        }
-
-    }
-}
+/*
 std::vector<CPiece *> Update::write(std::string recieved);
 {
 
@@ -184,3 +157,4 @@ std::string Update::read(std::vector <CPiece> send);
 {
 
 }
+*/

@@ -19,11 +19,10 @@ private:
 
 public:
     Piece* target;
-    int vectorPos(Piece *target ,Data data);
+
     bool del;
     Update();
     ~Update();
-//    void Attack(Piece *target,Data data );
     void NewPosition();
     void getEvent(MouseEvent&,Data&);
     void translatePos(Posiotion&);
@@ -36,7 +35,7 @@ public:
     void translate_socket();
     void send_socket();
     void WhichPiece();
-    void Attack(Piece *target ,Data data);
+
     std::vector<CPiece *> write(std::string recieved);
     std::string read(std::vector <CPiece> send);
 
