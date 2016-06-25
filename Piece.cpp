@@ -4,10 +4,16 @@ Piece::Piece(int owner)
 this->owner = owner;
 
 }
-bool Piece::start()
+bool Piece::start(int count)
 {
-    return  1;
+
+    if(1==count)
+        return 1;
+    if(count!=1)
+        return 1;
+
 }
+
 
 Piece::~Piece()
 {

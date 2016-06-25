@@ -4,6 +4,7 @@
 
 class Pawn:public Piece
 {
+    bool isFirstMove;
 public:
     Pawn(int owner,int count);
     virtual ~Pawn();
