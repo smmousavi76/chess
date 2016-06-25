@@ -1,6 +1,6 @@
 #include "Client.h"
 #include <iostream>
-
+//hi
 Client::Client(bool s)
 {
     if(s==1)
