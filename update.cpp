@@ -147,14 +147,103 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
+<<<<<<< Updated upstream
 
 /*
 std::vector<CPiece *> Update::write(std::string recieved);
+=======
+void Update::Attack(Piece *target ,Data data)
 {
+
+    int player_id=target->owner;
+    int piece_id=target->typeId;
+//    int vector_count=target->counter;
+//    int sum=piece_id+vector_count-1;
+    int a=vectorPos(target,data);
+    player[player_id]->pieces.erase(player[player_id]->pieces.begin()+a);
+    //player[player_id]->pieces.erase(player[player_id]->pieces.begin()+sum);
+    player[player_id]->Piece_Count--;
 
 }
-std::string Update::read(std::vector <CPiece> send);
+
+int Update::vectorPos(Piece *target,Data data)
+{
+    if(target==nullptr)
+    return -1;
+
+    else
+    {
+        for(int i=0;i<data.pieces.size();i++)
+        {
+        if(target==data.pieces[i])
+                return i;
+        }
+
+    }
+}
+
+int Update::check(int a)
+{
+    if(a==2)
+        return 1;
+    else
+        return 2;
+}
+vector<CPiece *> Update::write(string recieved)
+>>>>>>> Stashed changes
+{
+    Data data;
+ for(int i=0;i=recieved.size();i++)
+ {
+     data.pieces[4*i]->pos.xPos=recieved[4*i];
+     data.pieces[4*i+1]->pos.yPos=recieved[4*i+1];
+     data.pieces[4*i+2]->typeId=recieved[4*i+2];
+     data.pieces[4*i+3]->owner=recieved[4*i+3];
+
+ }
+ return data.pieces;
+
+}
+
+string Update::read(Data data )
 {
 
+
+    string send;
+    for(int i=0;i<player[playerTurn]->pieces.size();i++)
+    {
+       send[4*i]=data.pieces[4*i]->pos.xPos;
+       send[4*i+1]=data.pieces[4*i+1]->pos.yPos;
+       send[4*i+2]=data.pieces[4*i+2]->typeId;
+       send[4*i+3]=data.pieces[4*i+3]->owner;
+    //player->pieces[i]->pos
+    }
+    return send;
+}
+
+void Update::send_socket(string send,Data data)
+{
+
+    sf::TcpSocket socket;
+    send=read(data);
+	socket.connect("127.0.0.1", 55001);
+	socket.send(send.c_str(), send.size());
+
+
+}
+vector<CPiece*> Update::translate_socket(vector<CPiece *> send)
+{
+    sf::TcpListener listener;
+	listener.listen(55001);
+	sf::TcpSocket socket;
+	listener.accept(socket);
+	cout << "New client connected: " << socket.getRemoteAddress() << std::endl;
+	string buffer;
+	std::size_t received ;
+	int a=sizeof(buffer);
+	if(socket.receive(buffer,a , received)==sf::Socket::Done){std::cout<<"as";}
+    vector <CPiece*> recieved1;
+    recieved1=write(buffer);
+    return recieved1;
 }
 */
