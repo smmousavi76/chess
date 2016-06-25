@@ -56,8 +56,6 @@
 		<Unit filename="King.h" />
 		<Unit filename="Knight.h" />
 		<Unit filename="MouseEvent.h" />
-		<Unit filename="Parser.cpp" />
-		<Unit filename="Parser.h" />
 		<Unit filename="Pawn.h" />
 		<Unit filename="Piece.cpp" />
 		<Unit filename="Piece.h" />
