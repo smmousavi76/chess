@@ -36,16 +36,17 @@ public:
     vector <CPiece *> translate_socket(vector<CPiece *> recieved);
     void send_socket(string send,Data data);
     void WhichPiece();
-<<<<<<< Updated upstream
+    void makeData(Data& data);
+//<<<<<<< Updated upstream
 
     std::vector<CPiece *> write(std::string recieved);
     std::string read(std::vector <CPiece> send);
-=======
+//=======
     void Attack(Piece *target ,Data data);
-    vector<CPiece *> write(string recieved);
+    //vector<CPiece *> write(string recieved);
     string read(Data data );
     int check(int a);
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
     };
 

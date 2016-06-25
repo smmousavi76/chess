@@ -22,6 +22,7 @@ public:
     int Piece_Count;
     void Attack(Piece *target ,Data data);
     int vectorPos(Piece *target ,Data data);
+    void remove(Piece* target);
 };
 
 #endif // PLAYER_H_INCLUDED

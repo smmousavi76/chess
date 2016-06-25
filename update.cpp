@@ -30,14 +30,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
     if(phase == -1)
     {
         this->prepair();
-        for(int j=0;j<2;j++)
-        {
-            for(int i=0;i<player[j]->pieces.size();i++)
-            {
-                data.pieces.push_back(player[j]->pieces[i]);
-            }
-
-        }
+        this->makeData(data);
         phaseChanger();
         return;
     }
@@ -99,7 +92,9 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 else if(target->owner == (playerTurn+1)%2)
                 {
                     lastTarget->move(mouse.pos);
-                    player[playerTurn]->Attack(target,data);
+
+                    player[(playerTurn+1)%2]->remove(target);
+                    this->makeData(data);
                     data.possibleMoves.clear();
                     phaseChanger();
                     playerChanger();
@@ -108,8 +103,21 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
             }
         }
     }
-    target->start();
+//    target->start();
     return;
+}
+
+void Update::makeData(Data& data)
+{
+    data.pieces.clear();
+    for(int j=0;j<2;j++)
+        {
+            for(int i=0;i<player[j]->pieces.size();i++)
+            {
+                data.pieces.push_back(player[j]->pieces[i]);
+            }
+
+        }
 }
 
 bool Update::finish()
@@ -147,7 +155,7 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 
 /*
 std::vector<CPiece *> Update::write(std::string recieved);
@@ -181,7 +189,7 @@ int Update::vectorPos(Piece *target,Data data)
 
     }
 }
-
+*/
 int Update::check(int a)
 {
     if(a==2)
@@ -190,7 +198,7 @@ int Update::check(int a)
         return 2;
 }
 vector<CPiece *> Update::write(string recieved)
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 {
     Data data;
  for(int i=0;i=recieved.size();i++)
@@ -241,9 +249,9 @@ vector<CPiece*> Update::translate_socket(vector<CPiece *> send)
 	string buffer;
 	std::size_t received ;
 	int a=sizeof(buffer);
-	if(socket.receive(buffer,a , received)==sf::Socket::Done){std::cout<<"as";}
+	//socket.receive(buffer,a , received)
     vector <CPiece*> recieved1;
     recieved1=write(buffer);
     return recieved1;
 }
-*/
+

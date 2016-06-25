@@ -28,33 +28,29 @@ void Player::prepair()
     pieces.push_back(new Bishop(playerId,2));
 
 }
-void Player::Attack(Piece *target ,Data data)
+
+void Player::Attack(Piece *target, Data data)
 {
 
     int player_id=target->owner;
     int piece_id=target->typeId;
 //    int vector_count=target->counter;
 //    int sum=piece_id+vector_count-1;
-    int a=vectorPos(target,data);
-    pieces.erase(pieces.begin()+a);
+    //int a=vectorPos(target,data);
+    //pieces.erase(pieces.begin()+a);
     //player[player_id]->pieces.erase(player[player_id]->pieces.begin()+sum);
 
     Piece_Count--;
 
 }
-int Player::vectorPos(Piece *target,Data data)
+
+void Player::remove(Piece* target)
 {
-    if(target==nullptr)
-    return -1;
-
-    else
+    int i;
+    for(i=0;i<pieces.size();i++)
     {
-        for(int i=0;i<pieces.size();i++)
-        {
-        if(target==pieces[i])
-                return i;
-        }
-
+        if(target == pieces[i])
+            break;
     }
+    pieces.erase(pieces.begin()+i);
 }
-
