@@ -146,9 +146,33 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
-
 void Update::Attack(Piece *target ,Data data)
 {
-    // remove from vector
-    //data->pieces.pop
+
+    int player_id=target->owner;
+    int piece_id=target->typeId;
+//    int vector_count=target->counter;
+//    int sum=piece_id+vector_count-1;
+    int a=vectorPos(target,data);
+    player[player_id]->pieces.erase(player[player_id]->pieces.begin()+a);
+    //player[player_id]->pieces.erase(player[player_id]->pieces.begin()+sum);
+
+    player[player_id]->Piece_Count--;
+
+}
+
+int Update::vectorPos(Piece *target,Data data)
+{
+    if(target==nullptr)
+    return -1;
+
+    else
+    {
+        for(int i=0;i<data.pieces.size();i++)
+        {
+        if(target==data.pieces[i])
+                return i;
+        }
+
+    }
 }
