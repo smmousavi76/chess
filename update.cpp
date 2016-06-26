@@ -11,11 +11,19 @@ void Update::phaseChanger()
     phase = (phase+1)%2;
 
 }
-
-void Update::playerChanger()
+/*
+bool Update::playerChanger(Data data)
 {
-    playerTurn = (playerTurn+1)%3;
+
+
+    if(send_socket(data))
+    {
+        cout<<" send ok \n";
+    }
+
+  //  playerTurn = (playerTurn+1)%2;
 }
+*/
 Update::Update()
 {
     for(int i=0;i<2;i++)
@@ -25,7 +33,13 @@ Update::Update()
 }
 void Update::getEvent(MouseEvent& mouse,Data& data)
 {
-
+    int count;
+    if(count==0)
+    //translate_socket();
+    count++;
+    ///yeki az client ha tabe send_rand() ra darad
+    ///send_rand();
+    ///playerTurn=recieved_rand();
     std::cout <<phase <<"\n";
     if(phase == -1)
     {
@@ -34,6 +48,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         phaseChanger();
         return;
     }
+   /// if(translate_socket())
     if(mouse.clicked)
     {
         translatePos(mouse.pos);
@@ -104,6 +119,9 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                             if(a->owner!=target->owner)
                             {
                                 ///pawn attack bishop
+                                if(a->typeId!=3||a->typeId!=9||a->typeId!=2 ||a->typeId!=8)
+
+
                                    data.possibleMoves.push_back(po);
                             }
                         }
@@ -115,6 +133,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                     if(data.possibleMoves.size()>0)
                     {
                         lastTarget = target;
+
                         phaseChanger();
                     }
                 }
@@ -135,9 +154,11 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 if(target == nullptr)
                 {
                     lastTarget->move(mouse.pos);
+                    ///socket
+                   ///send_socket(data);
                     data.possibleMoves.clear();
                     phaseChanger();
-                    playerChanger();
+                   // playerChanger();
                 }
                 else if(target->owner == (playerTurn+1)%2)
                 {
@@ -145,17 +166,16 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
                     player[(playerTurn+1)%2]->remove(target);
                     this->makeData(data);
+                    ///socket
+                    //send_socket(data);
                     data.possibleMoves.clear();
                     phaseChanger();
-                    playerChanger();
+                   // playerChanger();
                 }
 
             }
         }
-        if(phase==2)
-        {
-//         if()
-        }
+
     }
 
     return;
@@ -262,18 +282,14 @@ char *Update::string_to_char(string a)
 {
   char * c = new char [a.length()+1];
   std::strcpy (c, a.c_str());
-
-
   char * p = std::strtok (c,NULL);
-
- return p;
+  return p;
 }
 
 bool Update::send_socket(Data data)
 {
-   string send;
+    string send;
     sf::TcpSocket socket;
-
     send=vector_to_string(data);
     char *a;
     a= new char[100];
@@ -285,21 +301,20 @@ bool Update::send_socket(Data data)
     if (status != sf::Socket::Done)
     {
         cout<<" error sending \n";
-       return 0;         // error...
+        return 0;
     }
     else return 1;
 
 }
 
 
-bool Update::translate_socket(string recieved)
+bool Update::translate_socket()
 {
     sf::TcpListener listener;
 	listener.listen(55001);
 	sf::TcpSocket socket;
 	listener.accept(socket);
 	std::size_t received1 ;
-	int a=sizeof(recieved);
     char recieved2[100];
 	if (socket.receive(recieved2, 100, received1) != sf::Socket::Done)
     {
@@ -315,8 +330,48 @@ bool Update::translate_socket(string recieved)
     convert=char_to_string(recieved2);
     a=string_to_vector(convert);
     makeData(a);
-    return 0;
-
+    return 1;
     }
 }
 
+void Update::send_rand()
+{
+    srand(time(0));
+    int a=rand()%2+1;
+    playerTurn=a;
+    char * c;
+    if(a==1)
+        *c='1';
+    else *c='2';
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("192.168.0.5", 53000);
+    if (status != sf::Socket::Done)
+    {
+        cout<<" error in rand \n";// error...
+    }
+    std::size_t received;
+    if (socket.receive(c, 1, received) != sf::Socket::Done)
+    {
+        cout<< " error in rand 2 \n";// error...
+    }
+}
+int Update::recieved_rand()
+{
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("192.168.0.5", 53000);
+    if (status != sf::Socket::Done)
+    {
+        cout<<" error in rand \n";// error...
+    }
+    char *data;
+    std::size_t received;
+    if (socket.receive(data, 100, received) != sf::Socket::Done)
+    {
+        cout<<"error  recieved \n";
+    }
+    if(*data='1')
+        return 1;
+    if(*data='2')
+        return 2;
+    else return -1;
+}

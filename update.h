@@ -1,6 +1,7 @@
 #ifndef UPDATE_H_INCLUDED
 #define UPDATE_H_INCLUDED
-
+#include <cstdlib>
+#include <ctime>
 #include "Player.h"
 #include "MouseEvent.h"
 #include "Data.h"
@@ -31,19 +32,20 @@ public:
     Piece* whichPiece(Posiotion);
     void prepair();
     void phaseChanger();
-    void playerChanger();
+    void playerChanger(Data data);
     bool finish();
     int remove_piecce();
-    bool translate_socket(string recieved);
-   bool send_socket(Data data);
+    bool translate_socket();
+    bool send_socket(Data data);
     void WhichPiece();
     void makeData(Data& data);
     void Attack(Piece *target ,Data data);
 
-   Data string_to_vector(string a);
+    Data string_to_vector(string a);
     string vector_to_string(Data data);
     int check(int a);
-
+    void send_rand();
+    int recieved_rand();
     string char_to_string(char *a);
     char * string_to_char(string a);
 
