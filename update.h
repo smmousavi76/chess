@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Client.h"
 #include "Player.h"
+#include <cstring>
 using namespace std;
 class Update
 {
@@ -33,20 +34,18 @@ public:
     void playerChanger();
     bool finish();
     int remove_piecce();
-    vector <CPiece *> translate_socket(vector<CPiece *> recieved);
-    void send_socket(string send,Data data);
+    bool translate_socket(string recieved);
+   bool send_socket(Data data);
     void WhichPiece();
     void makeData(Data& data);
-//<<<<<<< Updated upstream
-
-    std::vector<CPiece *> write(std::string recieved);
-    std::string read(std::vector <CPiece> send);
-//=======
     void Attack(Piece *target ,Data data);
-    //vector<CPiece *> write(string recieved);
-    string read(Data data );
+
+   Data string_to_vector(string a);
+    string vector_to_string(Data data);
     int check(int a);
-//>>>>>>> Stashed changes
+
+    string char_to_string(char *a);
+    char * string_to_char(string a);
 
     };
 

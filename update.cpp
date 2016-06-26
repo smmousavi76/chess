@@ -14,7 +14,7 @@ void Update::phaseChanger()
 
 void Update::playerChanger()
 {
-    playerTurn = (playerTurn+1)%2;
+    playerTurn = (playerTurn+1)%3;
 }
 Update::Update()
 {
@@ -152,8 +152,12 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
             }
         }
+        if(phase==2)
+        {
+//         if()
+        }
     }
-//    target->start();
+
     return;
 }
 
@@ -205,41 +209,6 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
-//<<<<<<< Updated upstream
-
-/*
-std::vector<CPiece *> Update::write(std::string recieved);
-=======
-void Update::Attack(Piece *target ,Data data)
-{
-
-    int player_id=target->owner;
-    int piece_id=target->typeId;
-//    int vector_count=target->counter;
-//    int sum=piece_id+vector_count-1;
-    int a=vectorPos(target,data);
-    player[player_id]->pieces.erase(player[player_id]->pieces.begin()+a);
-    //player[player_id]->pieces.erase(player[player_id]->pieces.begin()+sum);
-    player[player_id]->Piece_Count--;
-
-}
-
-int Update::vectorPos(Piece *target,Data data)
-{
-    if(target==nullptr)
-    return -1;
-
-    else
-    {
-        for(int i=0;i<data.pieces.size();i++)
-        {
-        if(target==data.pieces[i])
-                return i;
-        }
-
-    }
-}
-*/
 int Update::check(int a)
 {
     if(a==2)
@@ -247,23 +216,27 @@ int Update::check(int a)
     else
         return 2;
 }
-vector<CPiece *> Update::write(string recieved)
-//>>>>>>> Stashed changes
+Data Update::string_to_vector(string recieved)
 {
     Data data;
  for(int i=0;i=recieved.size();i++)
  {
-     data.pieces[4*i]->pos.xPos=recieved[4*i];
-     data.pieces[4*i+1]->pos.yPos=recieved[4*i+1];
-     data.pieces[4*i+2]->typeId=recieved[4*i+2];
-     data.pieces[4*i+3]->owner=recieved[4*i+3];
+
+
+    player[check(playerTurn)]->pieces[4*i]->pos.xPos=recieved[4*i];
+    player[check(playerTurn)]->pieces[4*i+1]->pos.xPos=recieved[4*i+1];
+    player[check(playerTurn)]->pieces[4*i+1]->pos.xPos=recieved[4*i+2];
+    player[check(playerTurn)]->pieces[4*i+1]->pos.xPos=recieved[4*i+3];
+
+
 
  }
- return data.pieces;
+ return data ;
+
 
 }
 
-string Update::read(Data data )
+string Update::vector_to_string(Data data )
 {
 
 
@@ -274,34 +247,76 @@ string Update::read(Data data )
        send[4*i+1]=data.pieces[4*i+1]->pos.yPos;
        send[4*i+2]=data.pieces[4*i+2]->typeId;
        send[4*i+3]=data.pieces[4*i+3]->owner;
-    //player->pieces[i]->pos
+
     }
     return send;
 }
-
-void Update::send_socket(string send,Data data)
+string Update::char_to_string(char *a)
 {
-
-    sf::TcpSocket socket;
-    send=read(data);
-	socket.connect("127.0.0.1", 55001);
-	socket.send(send.c_str(), send.size());
+    string out(a);
+    return a;
 
 
 }
-vector<CPiece*> Update::translate_socket(vector<CPiece *> send)
+char *Update::string_to_char(string a)
+{
+  char * c = new char [a.length()+1];
+  std::strcpy (c, a.c_str());
+
+
+  char * p = std::strtok (c,NULL);
+
+ return p;
+}
+
+bool Update::send_socket(Data data)
+{
+   string send;
+    sf::TcpSocket socket;
+
+    send=vector_to_string(data);
+    char *a;
+    a= new char[100];
+    a=string_to_char(send);
+
+
+    sf::Socket::Status status = socket.connect("192.168.0.5", 53000);
+    socket.send(a, send.size());
+    if (status != sf::Socket::Done)
+    {
+        cout<<" error sending \n";
+       return 0;         // error...
+    }
+    else return 1;
+
+}
+
+
+bool Update::translate_socket(string recieved)
 {
     sf::TcpListener listener;
 	listener.listen(55001);
 	sf::TcpSocket socket;
 	listener.accept(socket);
-	cout << "New client connected: " << socket.getRemoteAddress() << std::endl;
-	string buffer;
-	std::size_t received ;
-	int a=sizeof(buffer);
-	//socket.receive(buffer,a , received)
-    vector <CPiece*> recieved1;
-    recieved1=write(buffer);
-    return recieved1;
+	std::size_t received1 ;
+	int a=sizeof(recieved);
+    char recieved2[100];
+	if (socket.receive(recieved2, 100, received1) != sf::Socket::Done)
+    {
+        cout<<"error recieved \n";
+        return 0;
+    }
+
+
+    else
+    {
+    Data a;
+    string convert;
+    convert=char_to_string(recieved2);
+    a=string_to_vector(convert);
+    makeData(a);
+    return 0;
+
+    }
 }
 
