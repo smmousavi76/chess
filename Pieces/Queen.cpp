@@ -1,6 +1,5 @@
 #include "Queen.h"
-#include "Position.h"
-#include <iostream>
+
 Queen::Queen(int owner):Piece( owner)
 {
 

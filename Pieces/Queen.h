@@ -1,7 +1,8 @@
 #ifndef QUEEN_H_INCLUDED
 #define QUEEN_H_INCLUDED
-#include "Piece.h"
-#include "Position.h"
+
+#include "../Piece.h"
+
 class Queen :public Piece
 {
 public:

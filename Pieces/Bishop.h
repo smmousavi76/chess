@@ -1,10 +1,8 @@
 #ifndef BISHOP_H_INCLUDED
 #define BISHOP_H_INCLUDED
-#include "Piece.h"
-#include "Position.h"
-#include "CPiece.h"
-#include <vector>
-using namespace std;
+
+#include "../Piece.h"
+
 class Bishop:public Piece
 {
 public:

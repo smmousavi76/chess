@@ -10,7 +10,7 @@ class Game
 {
     Client* client;
     Event events;
-    Update update;
+    Update *update;
     Data data;
     void refreshClient();
     void refreshUpdate();

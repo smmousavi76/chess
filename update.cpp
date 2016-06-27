@@ -11,36 +11,64 @@ void Update::phaseChanger()
     phase = (phase+1)%2;
 
 }
-/*
-bool Update::playerChanger(Data data)
+
+bool Update::playerChanger()
 {
+    char data[30];
+    ///use "req" to fill data
 
 
-    if(send_socket(data))
-    {
-        cout<<" send ok \n";
-    }
+    ///send "data" using sock
 
-  //  playerTurn = (playerTurn+1)%2;
+    playerTurn = (playerTurn+1)%2;
+
+    ///get new data
+
+    ///use it to change board
+
+    playerTurn = (playerTurn+1)%2;
 }
-*/
+
 Update::Update()
 {
-    for(int i=0;i<2;i++)
+    count=0;
+    for(int i=0; i<2; i++)
         player[i] = new Player(i);
-        playerTurn = 0;
-        phase = -1;
+    playerTurn = 0;
+    phase = -1;
 }
+
+void Update::start()
+{
+    if(true)///PlayerId
+    {
+        sf::Socket::Status status = socket.connect("127.0.0.1", 53000);
+        if (status != sf::Socket::Done)
+        {
+            std::cout <<"Cant Connect To Server\n";
+            return;
+        }
+    }
+    else
+    {
+        sf::TcpListener listener;
+
+        // bind the listener to a port
+        if (listener.listen(53000) != sf::Socket::Done)
+        {
+            std::cout <<"Cant Listen on this Port\n";
+        }
+        // accept a new connection
+        sf::TcpSocket socket;
+        if (listener.accept(socket) != sf::Socket::Done)
+        {
+            std::cout <<"Cant Accept connection from Client\n";
+        }
+    }
+}
+
 void Update::getEvent(MouseEvent& mouse,Data& data)
 {
-    int count;
-    if(count==0)
-    //translate_socket();
-    count++;
-    ///yeki az client ha tabe send_rand() ra darad
-    ///send_rand();
-    ///playerTurn=recieved_rand();
-    std::cout <<phase <<"\n";
     if(phase == -1)
     {
         this->prepair();
@@ -48,60 +76,11 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         phaseChanger();
         return;
     }
-   /// if(translate_socket())
     if(mouse.clicked)
     {
+        count++;
         translatePos(mouse.pos);
         target = whichPiece(mouse.pos);
-        Piece *target2,*target3;
-        /*
-    if(target!=nullptr)
-{
-
-
-        if(target->owner==0)
-        {
-        Posiotion pos,pos1;
-        pos.xPos=mouse.pos.xPos+1;
-        pos.yPos=mouse.pos.yPos+1;
-        pos1.xPos=mouse.pos.xPos-1;
-        pos1.yPos=mouse.pos.yPos+1;
-        translatePos(pos);
-        translatePos(pos1);
-        target3=whichPiece(pos1);
-        target2=whichPiece(pos);
-        if((target2!=nullptr||target3!=nullptr)&&target!=nullptr)
-        {
-          if(target2->owner!=target->owner||target3->owner!=target->owner)
-            {
-
-                target->enemy=1;
-            }
-        }
-        }
-        if(target->owner==1)
-       {
-        Posiotion pos,pos1;
-        pos.xPos=mouse.pos.xPos+1;
-        pos.yPos=mouse.pos.yPos-1;
-        pos1.xPos=mouse.pos.xPos-1;
-        pos1.yPos=mouse.pos.yPos-1;
-        translatePos(pos);
-        translatePos(pos1);
-        target3=whichPiece(pos1);
-        target2=whichPiece(pos);
-            if((target2!=nullptr||target3!=nullptr)&&target!=nullptr)
-        {
-          if(target2->owner!=target->owner||target3->owner!=target->owner)
-            {
-
-                target->enemy=1;
-            }
-       }
-       }
-
-}
-*/
         if(phase == 0) ///Phase Select Mine Piece
         {
             if(target != nullptr)
@@ -109,20 +88,15 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 {
                     for(auto po : target->PossibleMove(target->owner))
                     {
-                       // std::cout«"po \n ";
                         Piece *a;
-                        //std::cout«"po 2 \n ";
                         a=whichPiece(po);
-                        //std::cout«"po 3 \n";
                         if(a!=nullptr)
                         {
                             if(a->owner!=target->owner)
                             {
                                 ///pawn attack bishop
                                 if(a->typeId!=3||a->typeId!=9||a->typeId!=2 ||a->typeId!=8)
-
-
-                                   data.possibleMoves.push_back(po);
+                                    data.possibleMoves.push_back(po);
                             }
                         }
                         else
@@ -133,16 +107,14 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                     if(data.possibleMoves.size()>0)
                     {
                         lastTarget = target;
-
                         phaseChanger();
                     }
                 }
         }
         if(phase == 1)
         {
-            std::cout<<" clicked 5  ";
             bool flag = false;
-            for(int i=0;i<data.possibleMoves.size();i++)
+            for(int i=0; i<data.possibleMoves.size(); i++)
                 if(mouse.pos == data.possibleMoves[i])
                 {
                     flag = true;
@@ -154,44 +126,41 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 if(target == nullptr)
                 {
                     lastTarget->move(mouse.pos);
-                    ///socket
-                   ///send_socket(data);
                     data.possibleMoves.clear();
                     phaseChanger();
-                   // playerChanger();
+                    cout <<".";
+                    req.from = lastTarget->pos;
+                    req.to = mouse.pos;
+                    playerChanger();
                 }
                 else if(target->owner == (playerTurn+1)%2)
                 {
                     lastTarget->move(mouse.pos);
-
                     player[(playerTurn+1)%2]->remove(target);
                     this->makeData(data);
-                    ///socket
-                    //send_socket(data);
                     data.possibleMoves.clear();
                     phaseChanger();
-                   // playerChanger();
+                    req.from = lastTarget->pos;
+                    req.to = target->pos;
+                    playerChanger();
                 }
-
             }
         }
-
     }
-
     return;
 }
 
 void Update::makeData(Data& data)
 {
     data.pieces.clear();
-    for(int j=0;j<2;j++)
+    for(int j=0; j<2; j++)
+    {
+        for(int i=0; i<player[j]->pieces.size(); i++)
         {
-            for(int i=0;i<player[j]->pieces.size();i++)
-            {
-                data.pieces.push_back(player[j]->pieces[i]);
-            }
-
+            data.pieces.push_back(player[j]->pieces[i]);
         }
+
+    }
 }
 
 bool Update::finish()
@@ -228,150 +197,4 @@ Piece* Update::whichPiece(Posiotion pos)
         }
     }
     return nullptr;
-}
-int Update::check(int a)
-{
-    if(a==2)
-        return 1;
-    else
-        return 2;
-}
-Data Update::string_to_vector(string recieved)
-{
-    Data data;
- for(int i=0;i=recieved.size();i++)
- {
-
-
-    player[check(playerTurn)]->pieces[4*i]->pos.xPos=recieved[4*i];
-    player[check(playerTurn)]->pieces[4*i+1]->pos.xPos=recieved[4*i+1];
-    player[check(playerTurn)]->pieces[4*i+1]->pos.xPos=recieved[4*i+2];
-    player[check(playerTurn)]->pieces[4*i+1]->pos.xPos=recieved[4*i+3];
-
-
-
- }
- return data ;
-
-
-}
-
-string Update::vector_to_string(Data data )
-{
-
-
-    string send;
-    for(int i=0;i<player[playerTurn]->pieces.size();i++)
-    {
-       send[4*i]=data.pieces[4*i]->pos.xPos;
-       send[4*i+1]=data.pieces[4*i+1]->pos.yPos;
-       send[4*i+2]=data.pieces[4*i+2]->typeId;
-       send[4*i+3]=data.pieces[4*i+3]->owner;
-
-    }
-    return send;
-}
-string Update::char_to_string(char *a)
-{
-    string out(a);
-    return a;
-
-
-}
-char *Update::string_to_char(string a)
-{
-  char * c = new char [a.length()+1];
-  std::strcpy (c, a.c_str());
-  char * p = std::strtok (c,NULL);
-  return p;
-}
-
-bool Update::send_socket(Data data)
-{
-    string send;
-    sf::TcpSocket socket;
-    send=vector_to_string(data);
-    char *a;
-    a= new char[100];
-    a=string_to_char(send);
-
-
-    sf::Socket::Status status = socket.connect("192.168.0.5", 53000);
-    socket.send(a, send.size());
-    if (status != sf::Socket::Done)
-    {
-        cout<<" error sending \n";
-        return 0;
-    }
-    else return 1;
-
-}
-
-
-bool Update::translate_socket()
-{
-    sf::TcpListener listener;
-	listener.listen(55001);
-	sf::TcpSocket socket;
-	listener.accept(socket);
-	std::size_t received1 ;
-    char recieved2[100];
-	if (socket.receive(recieved2, 100, received1) != sf::Socket::Done)
-    {
-        cout<<"error recieved \n";
-        return 0;
-    }
-
-
-    else
-    {
-    Data a;
-    string convert;
-    convert=char_to_string(recieved2);
-    a=string_to_vector(convert);
-    makeData(a);
-    return 1;
-    }
-}
-
-void Update::send_rand()
-{
-    srand(time(0));
-    int a=rand()%2+1;
-    playerTurn=a;
-    char * c;
-    if(a==1)
-        *c='1';
-    else *c='2';
-    sf::TcpSocket socket;
-    sf::Socket::Status status = socket.connect("192.168.0.5", 53000);
-    if (status != sf::Socket::Done)
-    {
-        cout<<" error in rand \n";// error...
-    }
-    std::size_t received;
-    if (socket.receive(c, 1, received) != sf::Socket::Done)
-    {
-        cout<< " error in rand 2 \n";// error...
-    }
-}
-int Update::recieved_rand()
-{
-    sf::TcpSocket socket;
-    sf::Socket::Status status = socket.connect("192.168.0.5", 53000);
-    if (status != sf::Socket::Done)
-    {
-        cout<<" error in rand \n";// error...
-    }
-    char *data;
-    std::size_t received;
-    if (socket.receive(data, 100, received) != sf::Socket::Done)
-    {
-        cout<<"error  recieved \n";
-    }
-    if(*data='1')
-        return 1;
-    if(*data='2')
-        return 2;
-    else return -1;
 }

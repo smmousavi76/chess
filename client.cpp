@@ -5,10 +5,10 @@ Client::Client(bool s)
 {
     if(s==1)
     {
-    std::cout<<" h \n";
-    setting.antialiasingLevel = 4;
-    window = new sf::RenderWindow(sf::VideoMode(800,800), "Chess " , sf::Style::Default, setting);
-    window->setFramerateLimit(30);
+        std::cout<<" h \n";
+        setting.antialiasingLevel = 4;
+        window = new sf::RenderWindow(sf::VideoMode(800,800), "Chess ", sf::Style::Default, setting);
+        window->setFramerateLimit(30);
     }
 }
 
@@ -19,9 +19,10 @@ Client::~Client()
 
 void Client::start()
 {
-  makeBoard();
-  loadTexture();
+    makeBoard();
+    loadTexture();
 }
+
 void Client::cycle(Data data)
 {
     window->clear();
@@ -44,7 +45,6 @@ void Client::cycle(Data data)
         }
         window->draw(rect);
     }
-    std::cout <<data.pieces.size() <<"\n";
     for(int i=0;i<data.pieces.size();i++)
     {
         sf::Sprite sprite;
@@ -58,11 +58,6 @@ void Client::cycle(Data data)
             sprite.setRotation(0);
         window->draw(sprite);
     }
-
-    std::cout <<"\n";
-
-
-
     window->display();
 }
 
@@ -120,15 +115,13 @@ void Client::loadTexture()
     pieceTexture.back().loadFromFile("Pics/Rook2.png");
     pieceTexture.push_back(sf::Texture());
     pieceTexture.back().loadFromFile("Pics/Pawn2.png");
-
+    std::cout <<"Textures Loaded\n";
 }
 
 void Client::makeBoard()
 {
     board = new Board(8,8);
-    std::cout<<" board \n";
     sf::RectangleShape r(sf::Vector2f(100,100));
-    std::cout<<"board 2 \n";
     r.setFillColor(sf::Color::White);
-    std::cout<<"board 3 \n";
+    std::cout<<"Board is Ready\n";
 }

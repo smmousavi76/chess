@@ -3,13 +3,12 @@
 #include"data.h"
 #include <vector>
 
-#include "Piece.h"
-#include "Pawn.h"
-#include "King.h"
-#include "Queen.h"
-#include "Rook.h"
-#include "Knight.h"
-#include "Bishop.h"
+#include "Pieces/pawn.h"
+#include "Pieces/King.h"
+#include "Pieces/Queen.h"
+#include "Pieces/Rook.h"
+#include "Pieces/Knight.h"
+#include "Pieces/Bishop.h"
 
 class Player
 {
