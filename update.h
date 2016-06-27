@@ -37,7 +37,8 @@ private:
     int remove_piecce();
     void WhichPiece();
     void makeData(Data& data);
-
+    void sendData (char *data);
+    bool recieveData();
 };
 
 #endif // UPDATE_H_INCLUDED

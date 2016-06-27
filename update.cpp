@@ -14,47 +14,91 @@ void Update::phaseChanger()
 
 bool Update::playerChanger()
 {
+    Piece *a,*b,*c;
     char data[30];
-    ///use "req" to fill data
-
-
-    ///send "data" using sock
-
+    ///send "data" using socket
+    b=whichPiece(req.from);
+    data[0]=b->owner;
+    data[1]=b->pos.xPos;
+    data[2]=b->pos.yPos;
+    if (socket.send(data, 30) != sf::Socket::Done)
+    {
+     cout<<" error in sending data \n";
+    }
+    if (socket.send(data, 30) == sf::Socket::Done)
+    {
+     cout<<" sending is ok \n";
+    }
     playerTurn = (playerTurn+1)%2;
-
     ///get new data
+    std::size_t received;
+    bool flag;
+    if (socket.receive(data, 100, received) != sf::Socket::Done)
+    {
+        cout<< "error in receieved data  \n";
+        flag=0;
 
-    ///use it to change board
+    }
+    else flag=1;
+
+    req.to.xPos=data[1];
+    req.to.yPos=data[2];
+    int owner=data[0];
+//    Piece *c;
+    Posiotion pos;
+     pos.xPos=req.to.xPos;
+     pos.yPos=req.to.yPos;
+    c=whichPiece(pos);
+    c->owner=owner;
+
+
+    for(int i=0;i<=player[owner]->pieces.size();i++)
+    {
+        if(player[owner]->pieces[i]==c)
+        {
+            player[owner]->pieces[i]=c;
+        }
+    }
 
     playerTurn = (playerTurn+1)%2;
 }
 
+//bool Update::recieveData()
+//{
+  //  char data[30];
+
+//}
 Update::Update()
 {
+
     count=0;
     for(int i=0; i<2; i++)
         player[i] = new Player(i);
-    playerTurn = 0;
+        int i;
+        //cout<<" player \n";
+       // cin>>i;
+    playerTurn = 1;
     phase = -1;
+
+
 }
 
 void Update::start()
 {
     if(true)///PlayerId
     {
-        sf::Socket::Status status = socket.connect("127.0.0.1", 53000);
+        sf::Socket::Status status = socket.connect("192.168.1.106", 5400);
         if (status != sf::Socket::Done)
         {
             std::cout <<"Cant Connect To Server\n";
             return;
         }
-    }
-    else
-    {
+
+
         sf::TcpListener listener;
 
         // bind the listener to a port
-        if (listener.listen(53000) != sf::Socket::Done)
+        if (listener.listen(5400) != sf::Socket::Done)
         {
             std::cout <<"Cant Listen on this Port\n";
         }
@@ -76,6 +120,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         phaseChanger();
         return;
     }
+    if(recieveData());
     if(mouse.clicked)
     {
         count++;
