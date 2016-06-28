@@ -16,9 +16,9 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
 {
     Piece *a,*b,*c;
     char data[30];
+    bool flag=1;
     ///send "data" using socket
     b=whichPiece(req.from);
-<<<<<<< Updated upstream
     if(b->owner==0)
         data[1]='0';
     if(b->owner==1)
@@ -128,7 +128,7 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
         break;
     }
 
-=======
+
 
     switch(b->typeId){
     case 1 : data[0]='1';
@@ -166,12 +166,16 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
 
     }
 
-    //cout<<req.to.xPos;
->>>>>>> Stashed changes
+
     if (socket.send(data, 30) != sf::Socket::Done)
     {
      cout<<" error in sending data \n";
+     flag=0;
     }
+    if(flag==0)
+        return 0;
+    else if(flag==1)
+        return 1;
 
 
 //    playerTurn = (playerTurn+1)%2;
@@ -182,10 +186,11 @@ bool Update::recieveData()
     Piece *a,*b;
     char data[30];
         std::size_t received;
-    bool flag;
+    bool flag=1;
    if (socket.receive(data, 100, received) != sf::Socket::Done)
     {
       cout<< "error in receieved data  \n";
+      flag=0;
 
     }
     if(data[1]=='0')
@@ -331,7 +336,10 @@ bool Update::recieveData()
 
     }
     }
+    if(flag==1)
     return 1;
+    else if(flag==0)
+        return 0;
 }
 
 Update::Update()
@@ -353,11 +361,9 @@ void Update::start()
 {
     if(playerTurn==0)///PlayerId
     {
-<<<<<<< Updated upstream
-        sf::Socket::Status status = socket.connect("172.17.11.71", 54000);
-=======
         sf::Socket::Status status = socket.connect("192.168.200.1", 5400);
->>>>>>> Stashed changes
+
+
         if (status != sf::Socket::Done)
         {
             std::cout <<"Cant Connect To Server\n";
