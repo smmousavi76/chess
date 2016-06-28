@@ -18,9 +18,11 @@ private:
     int phase;
     Player *player[2];
     Piece* lastTarget;
-    sf::TcpSocket socket;
     Request req;
+    sf::TcpSocket socket;
+
 public:
+
     Piece* target;
     int  count;
     Update();
@@ -32,7 +34,7 @@ private:
     Piece* whichPiece(Posiotion);
     void prepair();
     void phaseChanger();
-    bool playerChanger();
+    bool playerChanger(Posiotion from,Posiotion to);
     bool finish();
     int remove_piecce();
     void WhichPiece();
