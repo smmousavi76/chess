@@ -18,6 +18,7 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
     char data[30];
     ///send "data" using socket
     b=whichPiece(req.from);
+<<<<<<< Updated upstream
     if(b->owner==0)
         data[1]='0';
     if(b->owner==1)
@@ -127,6 +128,46 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
         break;
     }
 
+=======
+
+    switch(b->typeId){
+    case 1 : data[0]='1';
+    break;
+    case 2 : data[0]='2';
+    break;
+    case 3 : data[0]='3';
+    break;
+    case 4 : data[0]='4';
+    break;
+    case 5 : data[0]='5';
+    break;
+    case 6 : data[0]='6';
+    break;
+    case 7 : data[0]='7';
+    break;
+    case 8 : data[0]='8';
+    break;
+    case 9 : data[0]='9';
+    break;
+    case 10 : data[0]='10';
+    break;
+    case 11 : data[0]='11';
+    break;
+    case 12 : data[0]='12';
+    break;
+    case 13 : data[0]='13';
+    break;
+    case 14 : data[0]='14';
+    break;
+    case 15 : data[0]='15';
+    break;
+    case 16 : data[0]='16';
+    break;
+
+    }
+
+    //cout<<req.to.xPos;
+>>>>>>> Stashed changes
     if (socket.send(data, 30) != sf::Socket::Done)
     {
      cout<<" error in sending data \n";
@@ -302,7 +343,7 @@ Update::Update()
         int i;
         //cout<<" player \n";
        // cin>>i;
-    playerTurn = 0;
+    playerTurn = 1;
     phase = -1;
 
 
@@ -312,7 +353,11 @@ void Update::start()
 {
     if(playerTurn==0)///PlayerId
     {
+<<<<<<< Updated upstream
         sf::Socket::Status status = socket.connect("172.17.11.71", 54000);
+=======
+        sf::Socket::Status status = socket.connect("192.168.200.1", 5400);
+>>>>>>> Stashed changes
         if (status != sf::Socket::Done)
         {
             std::cout <<"Cant Connect To Server\n";
@@ -326,6 +371,7 @@ void Update::start()
 
 
         sf::TcpListener listener;
+        cout<<"aaaaaaaaaaa";
 
         // bind the listener to a port
         if (listener.listen(54000) != sf::Socket::Done)
