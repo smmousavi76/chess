@@ -19,7 +19,8 @@ private:
     Player *player[2];
     Piece* lastTarget;
     Request req;
-    sf::TcpSocket socket;
+//    sf::TcpSocket socket;
+    sf::UdpSocket socket;
 
 public:
 
