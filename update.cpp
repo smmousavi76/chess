@@ -18,6 +18,7 @@ bool Update::playerChanger()
     char data[30];
     ///send "data" using socket
     b=whichPiece(req.from);
+    //cout<<req.to.xPos;
     data[0]=b->owner;
     data[1]=b->pos.xPos;
     data[2]=b->pos.yPos;
@@ -25,10 +26,7 @@ bool Update::playerChanger()
     {
      cout<<" error in sending data \n";
     }
-    if (socket.send(data, 30) == sf::Socket::Done)
-    {
-     cout<<" sending is ok \n";
-    }
+
     playerTurn = (playerTurn+1)%2;
     ///get new data
     std::size_t received;
@@ -39,12 +37,11 @@ bool Update::playerChanger()
         flag=0;
 
     }
-    else flag=1;
+
 
     req.to.xPos=data[1];
     req.to.yPos=data[2];
     int owner=data[0];
-//    Piece *c;
     Posiotion pos;
      pos.xPos=req.to.xPos;
      pos.yPos=req.to.yPos;
@@ -77,7 +74,7 @@ Update::Update()
         int i;
         //cout<<" player \n";
        // cin>>i;
-    playerTurn = 1;
+    playerTurn = 0;
     phase = -1;
 
 
@@ -85,7 +82,7 @@ Update::Update()
 
 void Update::start()
 {
-    if(true)///PlayerId
+    if(playerTurn==0)///PlayerId
     {
         sf::Socket::Status status = socket.connect("192.168.1.106", 5400);
         if (status != sf::Socket::Done)
@@ -93,6 +90,11 @@ void Update::start()
             std::cout <<"Cant Connect To Server\n";
             return;
         }
+
+
+}
+    if(playerTurn==1)
+    {
 
 
         sf::TcpListener listener;
@@ -120,7 +122,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         phaseChanger();
         return;
     }
-    if(recieveData());
+//    if(recieveData());
     if(mouse.clicked)
     {
         count++;
