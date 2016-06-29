@@ -23,6 +23,9 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
         data[1]='0';
     if(b->owner==1)
         data[1]='1';
+
+        data[0]='1';
+        /*
     switch(from.xPos)
     {
         case 1:
@@ -166,7 +169,7 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
 
     }
 
-/*
+
     if (socket.send(data, 30) != sf::Socket::Done)
     {
      cout<<" error in sending data \n";
@@ -177,16 +180,13 @@ bool Update::playerChanger(Posiotion from,Posiotion to)
     else if(flag==1)
         return 1;
 */
-    sf::IpAddress recipient = "172.17.11.71";
+    sf::IpAddress recipient = "192.168.1.106";
     unsigned short port = 54000;
-    if (socket.send(data, 100, recipient, port) != sf::Socket::Done)
-    {
-     cout<< " error in sending \n";   // error...
-    }
+    socket.send(data, 100, recipient, port);
 
 //    playerTurn = (playerTurn+1)%2;
 }
-bool Update::recieveData()
+void Update::recieveData()
 {
 
     Piece *a,*b;
@@ -201,14 +201,11 @@ bool Update::recieveData()
 
     }
     */
-    sf::IpAddress sender;
+    string st="192.168.1.103";
+    sf::IpAddress sender=st;
     unsigned short port;
-    if (socket.receive(data, 100, received, sender, port) != sf::Socket::Done)
-    {
-      cout<< "error in receieved data  \n";
-      flag=0;
+    socket.receive(data, 30, received, sender, port);
 
-    }
     if(data[1]=='0')
     a->owner=0;
     if(data[1]=='1')
@@ -352,10 +349,10 @@ bool Update::recieveData()
 
     }
     }
-    if(flag==1)
-    return 1;
-    else if(flag==0)
-        return 0;
+   // if(flag==1)
+    //return 1;
+    //else if(flag==0)
+        return ;
 }
 
 Update::Update()
@@ -427,9 +424,10 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         phaseChanger();
         return;
     }
-    //if(recieveData());
+    //recieveData();
     if(mouse.clicked)
     {
+
         count++;
         translatePos(mouse.pos);
         target = whichPiece(mouse.pos);
