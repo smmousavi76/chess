@@ -1,5 +1,6 @@
 #ifndef POSITION_H_INCLUDED
 #define POSITION_H_INCLUDED
+#include <SFML/Network.hpp>
 
 struct Posiotion
 {
@@ -20,6 +21,9 @@ struct Posiotion
         xPos=x;
         yPos=y;
     }
+
 };
+sf::Packet& operator <<(sf::Packet& packet, const Posiotion& pos);
+sf::Packet& operator >>(sf::Packet& packet, Posiotion& pos);
 
 #endif // POSITION_H_INCLUDED
