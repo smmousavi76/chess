@@ -10,43 +10,78 @@ void Update::phaseChanger()
 
     phase = (phase+1)%2;
 
+
+
 }
 
-bool Update::playerChanger(Posiotion from,Posiotion to)
+void Update::playerChanger()
 {
     Piece *a,*b,*c;
-    char data[30];
+    char data[6];//= {'1', '2', '3', '4', '5','6'};
     bool flag=1;
     ///send "data" using socket
+    //char data[6];
+    packet>>req.from>>req.to;
+    /*
     b=whichPiece(req.from);
     if(b->owner==0)
-        data[0]='0';
+    data[0]='0';
     if(b->owner==1)
-        data[0]='1';
-        data[1]=b->typeId+48;
-        data[2]=req.from.xPos+48;
-        data[3]=req.from.yPos+48;
-        data[4]=req.to.xPos+48;
-        data[5]=req.to.yPos+48;
+    data[0]='1';
+    data[1]=b->typeId+48;
+    data[2]=req.from.xPos+48;
+    data[3]=req.from.yPos+48;
+    data[4]=req.to.xPos+48;
+    data[5]=req.to.yPos+48;
 
-    sf::IpAddress recipient = "192.168.1.106";
-    unsigned short port = 54000;
-    socket.send(data, 100, recipient, port);
+
+    cout << " sending " ;
+    for(int i =0; i < 6; ++i)   cout <<data[i];
+    cout <<endl;
+    socket.send(data, 6);
+    cout <<"sended \n";
+    */
+    connection.sendPacket(packet);
+    playerTurn=(playerTurn+1)%2;
 }
+
 void Update::recieveData()
 {
+    //sf::Thread th(&Update::thread_receive, this);
+   // th.launch();
+    //a.terminate();
+    packet=connection.receivePacket();
+    Request a;
+    packet<<a;
+    Piece *from;
+    from=whichPiece(a.from);
+    cout<<a.from.xPos<<" "<<a.from.yPos<<" "<<a.to.xPos<<" "<<a.to.yPos;
+    for(int i=0;i<player[(playerTurn+1)%2]->pieces.size();i++)
+    {
+    if(player[(myTurn+1)%2]->pieces[i]->typeId==from->typeId&&player[(myTurn+1)%2]->pieces[i]->pos.xPos==from->pos.xPos&&player[(myTurn+1)%2]->pieces[i]->pos.yPos==from->pos.yPos)
+    {
 
-    Piece *a,*b;
-    char data[30];
-    std::size_t received;
+    player[(myTurn+1)%2]->pieces[i]->pos.xPos=a.to.xPos;
+    player[(myTurn+1)%2]->pieces[i]->pos.yPos=a.to.yPos;
+
+    }
+    }
+    /*
+    std::size_t received=6;
     bool flag=1;
-    string st="192.168.200.1";
-    sf::IpAddress sender=st;
-    unsigned short port=54000;
-    socket.receive(data, 30, received, sender, port);
 
+
+    // TCP socket:
+    //coumt << "before recieve";
+    if(socket.receive(data, 6, received) != sf::Socket::Status::Done)
+    return;
     int a_data,b_data,c_data,d_data,e_data;
-    int owner=a->owner;
+   // int owner=a->owner;
+
+    //cout<<data[0]<<data[1]<<data[2]<<data[3]<<data[4]<<data[5];
+    if(data[0]!='/0'&&data[1]!='/0'&&data[2]!='\0'&&data[3]!='/0'&&data[4]!='/0'&&data[5]!='/0')
+    {
+    cout<<"data is "<<data[0]<<data[1]<<data[2]<<data[3]<<data[4]<<data[5];
     if(data[0]=='0')
     a->owner=0;
     if(data[0]=='1')
@@ -56,7 +91,6 @@ void Update::recieveData()
     c_data=data[3];//3=ypos from
     d_data=data[4];//4 xpos to
     e_data=data[5];//5= ypos to
-
     a->typeId=a_data-48;
     b->typeId=a->typeId;
     a->pos.xPos=b_data-48;
@@ -64,22 +98,31 @@ void Update::recieveData()
     b->pos.xPos=d_data-48;
     b->pos.yPos=e_data-48;
 
-    for(int i=0;i<=player[owner]->pieces.size();i++)
+
+
+    for(int i=0;i<=player[(myTurn+1)%2]->pieces.size();i++)
     {
-        if(player[owner]->pieces[i]->typeId==a->typeId&&player[owner]->pieces[i]->pos.xPos==a->pos.xPos&&player[owner]->pieces[i]->pos.yPos==a->pos.yPos)
+        if(player[(myTurn+1)%2]->pieces[i]->typeId==a->typeId&&player[(myTurn+1)%2]->pieces[i]->pos.xPos==a->pos.xPos&&player[(myTurn+1)%2]->pieces[i]->pos.yPos==a->pos.yPos)
         {
-            player[owner]->pieces[i]->pos.xPos==b->pos.xPos;
-            player[owner]->pieces[i]->pos.yPos==b->pos.yPos;
+            player[(myTurn)%2]->pieces[i]->pos.xPos==b->pos.xPos;
+            player[(myTurn+1)%2]->pieces[i]->pos.yPos==b->pos.yPos;
 
     }
-        return ;
-}
+    }
+*/
+            playerTurn=(playerTurn+1)%2;
+    }
 
-}
 
-Update::Update()
+
+
+// : sendT(&Update::playerChanger, this), receiveT(&Update::recieveData,this)
+
+Update::Update(int mt)
 {
 
+
+    myTurn = mt;
     count=0;
     for(int i=0; i<2; i++)
         player[i] = new Player(i);
@@ -89,67 +132,80 @@ Update::Update()
     playerTurn = 1;
     phase = -1;
 
-
 }
 
 void Update::start()
 {
-    if(playerTurn==0)///PlayerId
-    {
-        /*
-        sf::Socket::Status status = socket.connect("172.17.11.71", 10001);
 
-        //127.0,0.1
-        if (status != sf::Socket::Done)
-        {
-            std::cout <<"Cant Connect To Server\n";
-            return;
-        }
-        cout <<"connected to server";
-        */
+
+    if(myTurn==1)///PlayerId
+    {
+    if(socket.connect("localhost", 53000) != sf::Socket::Done)
+        cout <<"client connect is field  \n";
+
+    if(socket.connect("localhost",53000)==sf::Socket::Done)
+        cout<<"client connect is ok \n ";
+
+    std::cout << "New client connected: " << socket.getRemoteAddress() << std::endl;
 
     }
-    if(playerTurn==1)
+    if(myTurn==0)
     {
-        if (socket.bind(54000) != sf::Socket::Done)
-        {
-         cout<<"error in recieving \n";        // error...
-        }
-
-    /*
+            connection.start();
+/*
         sf::TcpListener listener;
-        cout<<"aaaaaaaaaaa";
-
-        // bind the listener to a port
-        if (listener.listen(10000) != sf::Socket::Done)
+        if (listener.listen(43001) != sf::Socket::Done)
         {
-            std::cout <<"Cant Listen on this Port\n";
-
+        cout << "server connection field \n";
         }
-        // accept a new connection
-        sf::TcpSocket socket;
-        if (listener.accept(socket) != sf::Socket::Done)
-        {
-            std::cout <<"Cant Accept connection from Client\n";
-        }
+        if(listener.listen(43001)==sf::Socket::Done)
+        cout<<" server is ok \n";
+        sf::TcpSocket client;
+        if(listener.accept(client) == sf::Socket::Done)
+        cout <<"client accepted \n";
         */
+
     }
     return ;
+
 }
 
 void Update::getEvent(MouseEvent& mouse,Data& data)
 {
+
+    sf::SocketSelector selector;
+    selector.add(socket);
     if(phase == -1)
     {
+
         this->prepair();
         this->makeData(data);
         phaseChanger();
         return;
     }
-    ///recieveData();
-    if(mouse.clicked)
+
+
+    if(playerTurn!=myTurn)
     {
 
+        //sf::Time timeout=sf::seconds(.5f);
+        //sf::SocketSelector selector;
+        //selector.add(socket);
+        //cout << selector.wait(timeout);
+   // if (selector.wait(timeout)){
+           // cout << "before recieve \n";
+          //  recieveData();
+//            receiveT.launch();
+            //cout << "$";
+   // }
+    //cout << "after ready if \n";
+
+    //else cout <<"sads";
+
+    }
+
+    if(playerTurn==myTurn&&mouse.clicked)
+    {
         count++;
         translatePos(mouse.pos);
         target = whichPiece(mouse.pos);
@@ -204,7 +260,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                     cout <<".";
                     req.from = lastTarget->pos;
                     req.to = mouse.pos;
-                    playerChanger(req.to,req.from);
+                    //sendT.launch();
                 }
                 else if(target->owner == (playerTurn+1)%2)
                 {
@@ -215,13 +271,16 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                     phaseChanger();
                     req.from = lastTarget->pos;
                     req.to = target->pos;
-                    playerChanger(req.to,req.from);
+                   // sendT.launch();
                 }
             }
         }
 
     }
+//    a.terminate();
     return;
+
+
 }
 
 void Update::makeData(Data& data)
