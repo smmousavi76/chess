@@ -54,9 +54,7 @@ private:
     void recieveData();
 
 
-    bool check(Piece* target, Posiotion pos);//rook
-    bool check1(Piece* target, Posiotion pos);//bishop
-    bool check2(Piece* target, Posiotion pos);//queen
+    bool check(Piece* target, Posiotion pos);///check for new possible moves
 
 };
 
