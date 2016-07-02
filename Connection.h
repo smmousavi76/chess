@@ -6,14 +6,14 @@
 #include <queue>
 
 
-
 class Connection
 {
 public:
     bool error;
     bool connected;
 private:
-
+    int ID;
+    sf::Mutex log;
     sf::TcpSocket socket;
     sf::Thread sendT;
     sf::Thread receiveT;
@@ -21,13 +21,14 @@ private:
     sf::Mutex sendQmutex;
     std::queue<sf::Packet> receiveQ;
     sf::Mutex receiveQmutex;
-    public:
-    Connection();
+public:
+    Connection(int);
     void start();
     void sendPacket(sf::Packet);
     sf::Packet receivePacket();
+    int haveInQ();
     void end();
-    private:
+private:
     void send();
     void receive();
 };

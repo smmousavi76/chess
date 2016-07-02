@@ -7,6 +7,7 @@
 #include <iostream>
 #include <thread>
 #include <SFML/Network.hpp>
+#pragma comment(lib, "sfml-network.lib")
 #include <queue>
 #include <vector>
 #include <list>
@@ -23,15 +24,8 @@ private:
     Player *player[2];
     Piece* lastTarget;
     Request req;
-  //  sf::Thread sendT;
-  //  sf::Thread receiveT;
-    sf::TcpSocket socket;
-    queue<sf::Thread> queue1;
-    //sf::UdpSocket socket;
-    sf::Packet packet;
     Connection connection;
-    public:
-
+public:
     Piece* target;
     int  count;
     Update(int mt);
@@ -51,10 +45,11 @@ private:
     void WhichPiece();
     void makeData(Data& data);
     void sendData (char *data);
-    void recieveData();
+    void recieveData(Data&);
 
-
-    bool check(Piece* target, Posiotion pos);///check for new possible moves
+    bool check(Piece* target, Posiotion pos);//rook
+    bool check1(Piece* target, Posiotion pos);//bishop
+    bool check2(Piece* target, Posiotion pos);//queen
 
 };
 
