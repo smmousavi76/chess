@@ -115,12 +115,12 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                         Piece* tmp = whichPiece(po);
                         if(tmp==nullptr)
                         {
-                            if(check1(target, po))
+                            if(check(target, po))
                                 data.possibleMoves.push_back(po);
                         }
                         else if(tmp->owner!= target->owner)
                         {
-                            if(check1(target, po))
+                            if(check(target, po))
                                 data.possibleMoves.push_back(po);
 
 
@@ -228,9 +228,11 @@ Piece* Update::whichPiece(Posiotion pos)
     }
     return nullptr;
 }
+
 bool Update::check(Piece* target, Posiotion pos)
 {
-    if(target->typeId == 4||target->typeId==10) ///Rook
+    ///ROOK
+    if(target->typeId == 4||target->typeId==10)
     {
         if(pos.xPos == target->pos.xPos)
         {
@@ -253,18 +255,25 @@ bool Update::check(Piece* target, Posiotion pos)
         }
 
     }
-
-else
-    return 1;
-
-}
-
-bool Update::check1(Piece* target, Posiotion pos){
+    ///PAWN
+    if(target->typeId == 5||target->typeId==11)
+    {
+        if(pos.xPos == target->pos.xPos)
+        {
+            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ )
+            {
+                if(this->whichPiece(Posiotion(pos.xPos, i))!= nullptr)
+                    return false;
+            }
+            return true;
+        }
+    }
+    ///BISHOP
     if(target->typeId == 0||target->typeId==6) ///bishop
     {
         if(pos.xPos > target->pos.xPos && pos.yPos > target->pos.yPos)
         {
-            for(int i=1;i<8;i++ ){
+            for(int i=8;i>=0;i-- ){
                 if(this->whichPiece(Posiotion(target->pos.xPos + i, target->pos.yPos+i))!= nullptr)
                     return false;
             }
@@ -274,102 +283,77 @@ bool Update::check1(Piece* target, Posiotion pos){
             for(int i=1;i<8;i++ ){
                 if(this->whichPiece(Posiotion(target->pos.xPos + i, target->pos.yPos-i))!= nullptr)
                     return false;
-
             }
         }
         if(pos.xPos < target->pos.xPos && pos.yPos > target->pos.yPos)
         {
-            for(int i=1;i<8;i++ ){
+            for(int i=8;i>=0;i--){
                 if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos+i))!= nullptr)
                     return false;
-
             }
         }
         if(pos.xPos < target->pos.xPos && pos.yPos < target->pos.yPos)
         {
-            for(int i=1;i<8;i++ ){
-                if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos-i))!= nullptr)
+            for(int i = 0 ;i < 8 ;i++){
+              if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos-i))!= nullptr)
                     return false;
-            }
+                    }
         }
-
-
-
-
-        if(pos.xPos > target->pos.xPos && pos.yPos > target->pos.yPos)
+   }
+   ///QUEEN
+   if(target->typeId == 3||target->typeId==9){
+        if(pos.xPos == target->pos.xPos)
         {
-            for(int i=1;i>0;i-- ){
-                if(this->whichPiece(Posiotion(target->pos.xPos + i, target->pos.yPos+i))!= nullptr)
-                    return false;
-            }
-        }
-        if(pos.xPos > target->pos.xPos && pos.yPos < target->pos.yPos)
-        {
-            for(int i=1;i>0;i-- ){
-                if(this->whichPiece(Posiotion(target->pos.xPos + i, target->pos.yPos-i))!= nullptr)
-                    return false;
-
-            }
-        }
-        if(pos.xPos < target->pos.xPos && pos.yPos > target->pos.yPos)
-        {
-            for(int i=1;i>0;i-- ){
-                if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos+i))!= nullptr)
-                    return false;
-
-            }
-        }
-        if(pos.xPos < target->pos.xPos && pos.yPos < target->pos.yPos)
-        {
-            for(int i=1;i>0;i-- ){
-                if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos-i))!= nullptr)
-                    return false;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-    else
-        return 1;
-}
-
-
-
-
-
-
-
-
-
-bool Update::check2(Piece* target, Posiotion pos)
-{
-    if(target->typeId == 3||target->typeId==9) ///queen
-    {
-        if(pos.xPos == target->pos.xPos && pos.yPos == target->pos.yPos)
-
-        {
-            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ ){
-
-            for(int j=min(pos.xPos, target->pos.xPos)+1;j<max(pos.xPos, target->pos.xPos);j++ )
-
-
+            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ )
             {
-                if(this->whichPiece(Posiotion(j, i))!= nullptr)
+                if(this->whichPiece(Posiotion(pos.xPos, i))!= nullptr)
                     return false;
-            }}
+            }
             return true;
         }
-    }
-    else
-        return 1;
+        if(pos.yPos == target->pos.yPos)
+        {
+            for(int i=min(pos.xPos, target->pos.xPos)+1;i<max(pos.xPos, target->pos.xPos);i++ )
+            {
+                if(this->whichPiece(Posiotion(i, pos.yPos))!= nullptr)
+                    return false;
+            }
+            return true;
+
+        }
+
+    if(pos.xPos > target->pos.xPos && pos.yPos > target->pos.yPos)
+            {
+                for(int i=8;i>=0;i-- ){
+                    if(this->whichPiece(Posiotion(target->pos.xPos + i, target->pos.yPos+i))!= nullptr)
+                    return false;
+            }
+        }
+        if(pos.xPos > target->pos.xPos && pos.yPos < target->pos.yPos)
+        {
+            for(int i=1;i<8;i++ ){
+                if(this->whichPiece(Posiotion(target->pos.xPos + i, target->pos.yPos-i))!= nullptr)
+                    return false;
+            }
+        }
+        if(pos.xPos < target->pos.xPos && pos.yPos > target->pos.yPos)
+        {
+            for(int i=8;i>=0;i--){
+                if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos+i))!= nullptr)
+                    return false;
+            }
+        }
+        if(pos.xPos < target->pos.xPos && pos.yPos < target->pos.yPos)
+        {
+            for(int i = 0 ;i < 8 ;i++){
+              if(this->whichPiece(Posiotion(target->pos.xPos - i, target->pos.yPos-i))!= nullptr)
+                    return false;
+                    }
+        }
+   }
+
+
+else
+    return 1;
+
 }
