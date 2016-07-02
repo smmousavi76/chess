@@ -223,11 +223,14 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                         {
                             if(check(target, po))
                                 data.possibleMoves.push_back(po);
+
+
                         }
                         else if(tmp->owner!= target->owner)
                         {
                             if(check(target, po))
                                 data.possibleMoves.push_back(po);
+
                         }
                     }
                     if(data.possibleMoves.size()>0)
@@ -356,39 +359,49 @@ bool Update::check(Piece* target, Posiotion pos)
             return true;
         }
     }
-    else
-        return 1;
-}
-bool Update::check1(Piece* target, Posiotion pos)
-{
-    if(target->typeId == 0||target->typeId==6) ///bishop
-    {
+        if(target->typeId == 3||target->typeId==9) ///queen
+        {
+            ///rookie move
+        if(pos.xPos == target->pos.xPos)
+        {
+            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ )
+            {
+                if(this->whichPiece(Posiotion(pos.xPos, i))!= nullptr)
+                    return false;
+            }
+            return true;
+        }
+        if(pos.yPos == target->pos.yPos)
+        {
+            for(int i=min(pos.xPos, target->pos.xPos)+1;i<max(pos.xPos, target->pos.xPos);i++ )
+            {
+                if(this->whichPiece(Posiotion(i, pos.yPos))!= nullptr)
+                    return false;
+            }
+            return true;
+        }
+        ///move like bishop
         if(pos.xPos == target->pos.xPos && pos.yPos == target->pos.yPos)
 
         {
             for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ ){
 
-            for(int j=min(pos.xPos, target->pos.xPos)+1;j<max(pos.xPos, target->pos.xPos);j++ )
-
-
+                for(int j=min(pos.xPos, target->pos.xPos)+1;j<max(pos.xPos, target->pos.xPos);j++ )
             {
-                if(this->whichPiece(Posiotion(j, i))!= nullptr)
+                    if(this->whichPiece(Posiotion(i,j))!= nullptr)
                     return false;
-            }}
+                   /*if(this->whichPiece(Posiotion(pos.yPos+i,pos.xPos-i))!= nullptr)
+                    return false;
+                    if(this->whichPiece(Posiotion(pos.yPos-i,pos.xPos-i))!= nullptr)
+                    return false;
+                    if(this->whichPiece(Posiotion(pos.yPos-i,pos.xPos+i))!= nullptr)
+                    return false;*/
+            }
+            }
             return true;
         }
     }
-    else
-        return 1;
-}
-
-
-
-
-
-bool Update::check2(Piece* target, Posiotion pos)
-{
-    if(target->typeId == 3||target->typeId==9) ///queen
+        if(target->typeId == 0||target->typeId==6) ///bishop
     {
         if(pos.xPos == target->pos.xPos && pos.yPos == target->pos.yPos)
 
@@ -399,9 +412,10 @@ bool Update::check2(Piece* target, Posiotion pos)
 
 
             {
-                if(this->whichPiece(Posiotion(j, i))!= nullptr)
+                if(this->whichPiece(Posiotion(j,i))!= nullptr)
                     return false;
-            }}
+            }
+            }
             return true;
         }
     }
