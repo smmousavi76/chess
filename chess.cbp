@@ -48,6 +48,8 @@
 		<Unit filename="CPiece.h" />
 		<Unit filename="Cell.cpp" />
 		<Unit filename="Cell.h" />
+		<Unit filename="Connection.cpp" />
+		<Unit filename="Connection.h" />
 		<Unit filename="Data.h" />
 		<Unit filename="Event.h" />
 		<Unit filename="Game.cpp" />
@@ -73,6 +75,7 @@
 		<Unit filename="client.cpp" />
 		<Unit filename="client.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="overload.cpp" />
 		<Unit filename="player.cpp" />
 		<Unit filename="update.cpp" />
 		<Unit filename="update.h" />
