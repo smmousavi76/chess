@@ -3,9 +3,17 @@
 #include "Client.h"
 Game::Game()
 {
+
     bool d=1;
     client = new Client(d);
-    update = new Update();
+    string s;
+
+    cin>>s;
+    if(s == "create"){
+        update = new Update(0);
+    }
+    else if(s == "join")
+        update = new Update(1);
 }
 
 void Game::start()
