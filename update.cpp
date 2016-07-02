@@ -185,11 +185,10 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
     }
 
   //  recieveData();
-    if(mouse.clicked)
 
 
-    if(playerTurn!=myTurn)
-    {
+   // if(playerTurn!=myTurn)
+   // {
 
         //sf::Time timeout=sf::seconds(.5f);
         //sf::SocketSelector selector;
@@ -205,9 +204,9 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
 
     //else cout <<"sads";
 
-    }
+    //}
 
-    if(playerTurn==myTurn&&mouse.clicked)
+    if(mouse.clicked)
     {
         count++;
         translatePos(mouse.pos);
@@ -215,7 +214,7 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         if(phase == 0) ///Phase Select Mine Piece
         {
             if(target != nullptr)
-                if(target->owner == playerTurn)
+                if(target->owner == myTurn)
                 {
                     for(auto po : target->PossibleMove(target->owner))
                     {
