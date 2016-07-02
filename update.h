@@ -47,9 +47,7 @@ private:
     void sendData (char *data);
     void recieveData(Data&);
 
-    bool check(Piece* target, Posiotion pos);//rook
-    bool check1(Piece* target, Posiotion pos);//bishop
-    bool check2(Piece* target, Posiotion pos);//queen
+    bool check(Piece* target, Posiotion pos);
 
 };
 
