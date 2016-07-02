@@ -184,6 +184,9 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
         return;
     }
 
+  //  recieveData();
+    if(mouse.clicked)
+
 
     if(playerTurn!=myTurn)
     {
@@ -216,25 +219,25 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                 {
                     for(auto po : target->PossibleMove(target->owner))
                     {
-                        Piece *a;
-                        a=whichPiece(po);
-                        if(a!=nullptr)
+                        Piece* tmp = whichPiece(po);
+                        if(tmp==nullptr)
                         {
-                            if(a->owner!=target->owner)
-                            {
-
-
-                                if(a->typeId!=3||a->typeId!=9||a->typeId!=2 ||a->typeId!=8)
-                                    data.possibleMoves.push_back(po);
-                            }
+                            if(check(target, po))
+                                data.possibleMoves.push_back(po);
                         }
-                        else
+                        else if(tmp->owner!= target->owner)
                         {
-                            data.possibleMoves.push_back(po);
+                            if(check(target, po))
+                                data.possibleMoves.push_back(po);
                         }
                     }
                     if(data.possibleMoves.size()>0)
                     {
+                        std::cout <<data.possibleMoves.size() <<"\n";
+                        for(auto po:data.possibleMoves)
+                        {
+                            std::cout <<po.xPos <<" " <<po.yPos <<"\n";
+                        }
                         lastTarget = target;
                         phaseChanger();
                     }
@@ -330,4 +333,30 @@ Piece* Update::whichPiece(Posiotion pos)
         }
     }
     return nullptr;
+}
+bool Update::check(Piece* target, Posiotion pos)
+{
+    if(target->typeId == 4||target->typeId==10) ///Rook
+    {
+        if(pos.xPos == target->pos.xPos)
+        {
+            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ )
+            {
+                if(this->whichPiece(Posiotion(pos.xPos, i))!= nullptr)
+                    return false;
+            }
+            return true;
+        }
+        if(pos.yPos == target->pos.yPos)
+        {
+            for(int i=min(pos.xPos, target->pos.xPos)+1;i<max(pos.xPos, target->pos.xPos);i++ )
+            {
+                if(this->whichPiece(Posiotion(i, pos.yPos))!= nullptr)
+                    return false;
+            }
+            return true;
+        }
+    }
+    else
+        return 1;
 }
