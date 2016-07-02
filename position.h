@@ -4,8 +4,8 @@
 
 struct Posiotion
 {
-    int xPos;
-    int yPos;
+    sf::Uint8 xPos;
+    sf::Uint8 yPos;
     bool operator==(Posiotion pos)
     {
         if(xPos == pos.xPos && yPos == pos.yPos)
@@ -16,7 +16,7 @@ struct Posiotion
     {
 
     }
-    Posiotion(int x, int y)
+    Posiotion(sf::Uint8 x, sf::Uint8 y)
     {
         xPos=x;
         yPos=y;

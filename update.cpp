@@ -42,7 +42,7 @@ void Update::playerChanger()
     cout <<"sended \n";
     */
     connection.sendPacket(packet);
-    playerTurn=(playerTurn+1)%2;
+   // playerTurn=(playerTurn+1)%2;
 }
 
 void Update::recieveData()
@@ -52,11 +52,11 @@ void Update::recieveData()
     //a.terminate();
     packet=connection.receivePacket();
     Request a;
-    packet<<a;
+    packet<<a.from<<a.to;
     Piece *from;
     from=whichPiece(a.from);
     cout<<a.from.xPos<<" "<<a.from.yPos<<" "<<a.to.xPos<<" "<<a.to.yPos;
-    for(int i=0;i<player[(playerTurn+1)%2]->pieces.size();i++)
+    for(int i=0;i<player[(myTurn+1)%2]->pieces.size();i++)
     {
     if(player[(myTurn+1)%2]->pieces[i]->typeId==from->typeId&&player[(myTurn+1)%2]->pieces[i]->pos.xPos==from->pos.xPos&&player[(myTurn+1)%2]->pieces[i]->pos.yPos==from->pos.yPos)
     {
@@ -110,7 +110,7 @@ void Update::recieveData()
     }
     }
 */
-            playerTurn=(playerTurn+1)%2;
+        //    playerTurn=(playerTurn+1)%2;
     }
 
 
@@ -264,10 +264,10 @@ void Update::getEvent(MouseEvent& mouse,Data& data)
                     req.to = mouse.pos;
                     //sendT.launch();
                 }
-                else if(target->owner == (playerTurn+1)%2)
+                else if(target->owner == (myTurn+1)%2)
                 {
                     lastTarget->move(mouse.pos);
-                    player[(playerTurn+1)%2]->remove(target);
+                    player[(myTurn+1)%2]->remove(target);
                     this->makeData(data);
                     data.possibleMoves.clear();
                     phaseChanger();
@@ -317,18 +317,18 @@ void Update::translatePos(Posiotion& pos)
 
 Piece* Update::whichPiece(Posiotion pos)
 {
-    for (int i=0 ; i<player[playerTurn]->pieces.size() ; i++)
+    for (int i=0 ; i<player[myTurn]->pieces.size() ; i++)
     {
-        if(pos == player[playerTurn]->pieces[i]->pos)
+        if(pos == player[myTurn]->pieces[i]->pos)
         {
-            return player[playerTurn]->pieces[i];
+            return player[myTurn]->pieces[i];
         }
     }
-    for (int i=0 ; i<player[(playerTurn+1)%2]->pieces.size() ; i++)
+    for (int i=0 ; i<player[(myTurn+1)%2]->pieces.size() ; i++)
     {
-        if(pos == player[(playerTurn+1)%2]->pieces[i]->pos)
+        if(pos == player[(myTurn+1)%2]->pieces[i]->pos)
         {
-            return player[(playerTurn+1)%2]->pieces[i];
+            return player[(myTurn+1)%2]->pieces[i];
         }
     }
     return nullptr;

@@ -7,7 +7,6 @@
 #include <iostream>
 #include <thread>
 #include <SFML/Network.hpp>
-#pragma comment(lib, "sfml-network.lib")
 #include <queue>
 #include <vector>
 #include <list>
