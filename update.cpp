@@ -359,3 +359,52 @@ bool Update::check(Piece* target, Posiotion pos)
     else
         return 1;
 }
+bool Update::check1(Piece* target, Posiotion pos)
+{
+    if(target->typeId == 0||target->typeId==6) ///bishop
+    {
+        if(pos.xPos == target->pos.xPos && pos.yPos == target->pos.yPos)
+
+        {
+            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ ){
+
+            for(int j=min(pos.xPos, target->pos.xPos)+1;j<max(pos.xPos, target->pos.xPos);j++ )
+
+
+            {
+                if(this->whichPiece(Posiotion(j, i))!= nullptr)
+                    return false;
+            }}
+            return true;
+        }
+    }
+    else
+        return 1;
+}
+
+
+
+
+
+bool Update::check2(Piece* target, Posiotion pos)
+{
+    if(target->typeId == 3||target->typeId==9) ///queen
+    {
+        if(pos.xPos == target->pos.xPos && pos.yPos == target->pos.yPos)
+
+        {
+            for(int i=min(pos.yPos, target->pos.yPos)+1;i<max(pos.yPos, target->pos.yPos);i++ ){
+
+            for(int j=min(pos.xPos, target->pos.xPos)+1;j<max(pos.xPos, target->pos.xPos);j++ )
+
+
+            {
+                if(this->whichPiece(Posiotion(j, i))!= nullptr)
+                    return false;
+            }}
+            return true;
+        }
+    }
+    else
+        return 1;
+}
